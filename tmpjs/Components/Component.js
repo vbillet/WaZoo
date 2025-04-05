@@ -1,6 +1,5 @@
 class Component {
     componentClass = ''
-    testvalue = '2'
     constructor(data=undefined) {
         this.componentClass = this.constructor.name
         if (data!=undefined){
@@ -18,7 +17,7 @@ class Component {
         }
     }
     load(data){
-        try{ this.testValue = data.testValue } catch(error) { console.warn("TestValue not set in data.") }
+        //try{ this.testValue = data.testValue } catch(error) { console.warn("TestValue not set in data.") }
     }
     toString(){ return JSON.stringify(this) }
 }
