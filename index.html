@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaZoo V0.1</title>
+
+    <script type="text/javascript" src="tmpjs/Components/Component.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/Border.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/RectTransform.js"></script>
+    <script type="text/javascript" src="tmpjs/Objects/SimObject.js"></script>
+    <script type="text/javascript" src="tmpjs/Objects/div.js"></script>
+</head>
+<body>
+    <script>
+        d=new div()
+        d.addComponent(new RectTransform())
+        d.getComponent("RectTransform").height = 25
+        d.render()
+    </script>
+</body>
+</html>

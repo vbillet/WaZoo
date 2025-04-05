@@ -24,5 +24,8 @@ class div extends SimObject{
         console.log(this.elt)
         let border = this.getComponent('Border')
         border.color = '#FF0000'
+        //this.render()
     }
 }
+
+console.log("div SimObject Loaded")

@@ -22,3 +22,5 @@ class Component {
     }
     toString(){ return JSON.stringify(this) }
 }
+
+console.log("Componenent class Loaded")

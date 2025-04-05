@@ -100,3 +100,4 @@ class SimObject {
         this.name = pName
     }
 }
+console.log("SimObject Class Loaded")

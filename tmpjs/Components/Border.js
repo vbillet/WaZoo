@@ -17,3 +17,4 @@ class Border extends Component {
     getCSSString(){ return "border:" + this.size + this.unit + ' ' + this.kind + ' ' + this.color + ';' }
 //    toString(){ return JSON.stringify(this) }
 }
+console.log("Border Component Loaded")
