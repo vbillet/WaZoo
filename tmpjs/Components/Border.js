@@ -8,12 +8,12 @@ class Border extends Component {
 
     load(data) {
         super.load(data)
-        try{ this.width = data.width } catch(error) { console.warn("No border Size") }
-        try{ this.unit = data.unit }   catch(error) { console.warn("No border Size") }
-        try{ this.kind = data.kind }   catch(error) { console.warn("No border Kind") }
-        try{ this.color = data.color } catch(error) { console.warn("No border Color") }
+        try{ this.width = data.width } catch(e) { console.warn("No border Width") }
+        try{ this.unit = data.unit }   catch(e) { console.warn("No border Unit") }
+        try{ this.kind = data.kind }   catch(e) { console.warn("No border Kind") }
+        try{ this.color = data.color } catch(e) { console.warn("No border Color") }
     }
-    getCSSString(){ return "border:" + this.size + this.unit + ' ' + this.kind + ' ' + this.color + ';' }
+    getCSS(){ return "border:" + this.width + this.unit + ' ' + this.kind + ' ' + this.color + ';' }
 }
 
 console.log("Border Component Loaded")

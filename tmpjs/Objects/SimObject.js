@@ -32,7 +32,7 @@ class SimObject {
     // Ajoute un composant
     addComponent(component) { 
         if (!(component instanceof Component)) { 
-            console.warn("This is not a component : " + component)
+            console.error("This is not a component : " + component)
             return false
         }
         this.components.push(component)

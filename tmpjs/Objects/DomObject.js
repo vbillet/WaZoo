@@ -1,12 +1,12 @@
-class div extends SimObject{
+class DomObject extends SimObject{
     render(){
         this.update()
         let css = ''
         let cnt = this.components.length
         for (var ii = 0; ii<cnt; ii++){
             let comp = this.components[ii]
-            if (typeof comp.getCSSString !== undefined)
-                css = css + comp.getCSSString()
+            if (typeof comp.getCSS !== undefined)
+                css = css + comp.getCSS()
         }
         this.elt.style = css;
         this.postUpdate()
@@ -20,12 +20,7 @@ class div extends SimObject{
         this.render()
     }
 
-    update(){
-        console.log(this.elt)
-        let border = this.getComponent('Border')
-        border.color = '#FF0000'
-        //this.render()
-    }
+    update() {}
 }
 
-console.log("div SimObject Loaded")
+console.log("DomObject Loaded")
