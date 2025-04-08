@@ -27,7 +27,10 @@ WaZoo gère plusieurs types d'objets de base. Ces objets servent à construire l
  o = new SimObject()
  o.addComponent(new Border())
  o.removeComponent('Border')
-
  ```
- 
+ * **start()** : Cette méthode est appelée à la création du **SimObject**. Elle doit être définie dans les objets descendant de **SimObject**.
+ * **update()** : Cette méthode est appelée à la mise à jour du **SimObject**. Elle doit être définie dans les objets descendant de **SimObject**.
+ * **postUpdate()** : Cette méthode est appelée après la phase de rendu. Elle doit être définie dans les objets descendant de **SimObject**.
+ * **stop()** : Cette méthode est appelée à la destruction du **SimObject**. Elle doit être définie dans les objets descendant de **SimObject**.
+
 ## DomObject

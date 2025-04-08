@@ -1,7 +1,10 @@
 class SimObject {
+    #parent = undefined
     className = ''
+    guid = ''
     name = ''
     components = []
+    children = []
     //******************************************************************************************
     // CREO
     //******************************************************************************************
@@ -23,13 +26,16 @@ class SimObject {
                 return
             }
             this.load(_data)
+        } else {
+            this.guid = uuidv4()
         }
         this.start()
     }
 
+    // Clone le SimObject
     clone() { return new this.constructor(this.toString()) }
 
-    // Ajoute un composant
+    // Ajoute un composant à l'objet
     addComponent(component) { 
         if (!(component instanceof Component)) { 
             console.error("This is not a component : " + component)
@@ -38,8 +44,14 @@ class SimObject {
         this.components.push(component)
         return true
     }
-    createElement(tag){
-        return document.createElementNS("http://www.w3.org/1999/xhtml", tag)
+
+    addChild(simObj) {
+        if (!(simObj instanceof SimObject)) { 
+            console.error("This is not a SimObject : " + simObj)
+            return false
+        }
+        this.children.push(simObj)
+        simObj.setParent(this)
     }
 
     //******************************************************************************************
@@ -70,6 +82,8 @@ class SimObject {
     //******************************************************************************************
     // INTELLEGO
     //******************************************************************************************
+    getParent() { return this.#parent }
+
     hasComponent(componentClass){
         for(var ii=0;ii<this.components.length;ii++) 
             if (this.components[ii].componentClass === componentClass) 
@@ -87,17 +101,48 @@ class SimObject {
         return undefined
     }
 
+    getChildByIndex(idx){
+        if ((idx>=length(this.children)) || (idx<0)) {
+            console.error("invalid child index")
+            return undefined
+        }
+        return this.children[idx]
+    }
+
+    getChildByGUID(guid){
+        let cnt = this.children.length
+        for(var ii=0;ii<cnt;ii++){
+            if (this.children[ii].guid === guid) {
+                return this.children[ii]
+            }
+        }
+        return undefined
+    }
+
+    getChildCount(){
+        return length(this.children)
+    }
+
     toString(){ return JSON.stringify(this) }
 
     //******************************************************************************************
     // MUTO
     //******************************************************************************************
     load(data){
-        try{ this.name = data.name } catch(error) { console.warn("Name not set in datas !") }
+        try{ this.name = data.name } catch(e) { console.warn("Name not set in datas !") }
+        try{ this.guid = data.guid } catch(e) { console.warn("GUID not set in datas !") }
     }
 
     setName(pName){
         this.name = pName
+    }
+
+    setParent(simObj) {
+        if (!(simObj instanceof SimObject)) { 
+            console.error("This is not a SimObject : " + simObj)
+            return false
+        }
+        this.#parent =  simObj
     }
 }
 console.log("SimObject Class Loaded")

@@ -7,6 +7,7 @@
     <style>
         * { padding: 0; margin:0; position: relative;}
     </style>
+    <script type="text/javascript" src="tmpjs/utils.js"></script>
     <script type="text/javascript" src="tmpjs/Components/Component.js"></script>
     <script type="text/javascript" src="tmpjs/Components/Border.js"></script>
     <script type="text/javascript" src="tmpjs/Components/RectTransform.js"></script>
@@ -23,9 +24,13 @@
         t.width = 100
         t.widthUnit = "%"
         t.top=10
+        t.left=25
         b = d.getComponent("Border")
         b.color = "#808080"
         d.render()
+
+        c=d.clone()
+
     </script>
 </body>
 </html>

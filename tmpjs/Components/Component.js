@@ -1,4 +1,5 @@
 class Component {
+    guid = ''
     componentClass = ''
     constructor(data=undefined) {
         this.componentClass = this.constructor.name
@@ -14,11 +15,16 @@ class Component {
                 return
             }
             this.load(data)
+        } else {
+            this.guid = uuidv4()
         }
     }
+
     load(data){
         //try{ this.testValue = data.testValue } catch(error) { console.warn("TestValue not set in data.") }
+        try{ this.guid = data.guid } catch(e) { console.warn("GUID is not set in data.") }
     }
+
     toString(){ return JSON.stringify(this) }
 }
 
