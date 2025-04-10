@@ -1,6 +1,5 @@
 class DomObject extends SimObject{
-    #elt = undefined
-    
+
     render(){
         this.update()
         let css = ''
@@ -10,27 +9,19 @@ class DomObject extends SimObject{
             if (typeof comp.getCSS !== undefined)
                 css = css + comp.getCSS()
         }
-        this.#elt.style = css;
+        this.getDomElement().style = css;
         this.postUpdate()
     }
     
-    // Créer l'élément DOM
-    createElement(tag){
-        return document.createElementNS("http://www.w3.org/1999/xhtml", tag)
+    createElement(tag) { 
+        let elt = document.createElementNS("http://www.w3.org/1999/xhtml", tag) 
+        elt.setAttribute('id',this.guid)
+        return elt
     }
 
-    start(){
-        let elt = this.createElement("div")
-        this.#elt = elt
-        document.body.appendChild(elt)
+    start() { this.render() }
 
-        this.addComponent(new Border())
-        this.render()
-    }
-
-    update() {}
-
-    getDomElement() { return this.#elt }
+    getDomElement() { return document.getElementById(this.guid) }
 }
 
 console.log("DomObject Loaded")

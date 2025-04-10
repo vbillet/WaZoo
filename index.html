@@ -13,10 +13,16 @@
     <script type="text/javascript" src="tmpjs/Components/RectTransform.js"></script>
     <script type="text/javascript" src="tmpjs/Objects/SimObject.js"></script>
     <script type="text/javascript" src="tmpjs/Objects/DomObject.js"></script>
+    <script type="text/javascript" src="tmpjs/Objects/BodyObject.js"></script>
+    <script type="text/javascript" src="tmpjs/Objects/DivObject.js"></script>
 </head>
 <body>
     <script>
-        d = new DomObject()
+        jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
+        UI = new BodyObject(jsBody)
+        d = UI.addChild(new DivObject())
+        
+       /* d = new DomObject()
         d.addComponent(new RectTransform())
 
         t = d.getComponent("RectTransform")
@@ -29,7 +35,7 @@
         b.color = "#808080"
         d.render()
 
-        c=d.clone()
+        c=d.clone()*/
 
     </script>
 </body>

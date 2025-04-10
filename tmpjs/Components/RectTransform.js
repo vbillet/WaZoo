@@ -41,7 +41,9 @@ class RectTransform extends Component {
                      "width:" + this.width + this.widthUnit + ';' +
                      "height:" + this.height + this.heightUnit + ';' +
                      "top:" + this.top +'px;' +
-                     "left:" + this.left +'px;'
+                     "left:" + this.left +'px;' + 
+                     "width:" + this.width +'px;' + 
+                     "height:" + this.height +'px;'
     }
 }
 console.log("RectTransform Component Loaded")
