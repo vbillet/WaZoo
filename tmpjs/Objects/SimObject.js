@@ -12,11 +12,10 @@ class SimObject {
     // param : 
     //    data : JSON String qui contient la description de l'objet
     constructor(data=undefined) {
-        this.className = this.constructor.name
         if (data!=undefined){
             try{
                 var _data = JSON.parse(data)
-                if (_data.className !== this.className) { throw 'ClassName error :' + this.constructor.name } 
+                if (_data.className !== this.constructor.name) { throw 'ClassName error :' + this.constructor.name } 
             } catch(error) {
                 throw "Wrong data !!! "+error
             }
@@ -24,6 +23,7 @@ class SimObject {
         } else {
             this.guid = uuidv4()
         }
+        this.className = this.constructor.name
         this.start()
     }
 
@@ -46,7 +46,6 @@ class SimObject {
             console.error("This is not a SimObject : " + simObj)
             return undefined
         }
-        this.children.push(simObj)
         simObj.setParent(this)
         return simObj
     }
@@ -59,6 +58,17 @@ class SimObject {
         for(var ii=0;ii<cnt;ii++){
             if (this.components[ii].componentClass === componentClass) {
                 this.components.splice(ii,1)
+                return true
+            }
+        }
+        return false
+    }
+
+    removeChild(guid) {
+        let cnt = this.children.length
+        for(var ii=0;ii<cnt;ii++){
+            if (this.children[ii].guid === guid) {
+                this.children.splice(ii,1)
                 return true
             }
         }
@@ -134,12 +144,21 @@ class SimObject {
         this.name = pName
     }
 
+    clearParent(){
+        if (this.#parent != undefined) {
+            this.#parent.removeChild(this.guid)
+        }
+        this.#parent = undefined
+    }
+
     setParent(simObj) {
         if (!(simObj instanceof SimObject)) { 
             console.error("This is not a SimObject : " + simObj)
             return false
         }
-        this.#parent =  simObj
+        this.clearParent()
+        this.#parent = simObj
+        simObj.children.push(this)
     }
 }
 console.log("SimObject Class Loaded")
