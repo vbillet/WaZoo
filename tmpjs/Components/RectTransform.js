@@ -32,7 +32,7 @@ class RectTransform extends Component {
     getCSS(){ 
         let position = "position:fixed;"
         // le anchor-name c'est le guid de l'objet parent du contenant
-        position = position + 'anchor-name:--'+this.getSimObject().guid+';'
+        position = position + 'anchor-name:--'+this.getSimObject().getParent().guid+';'
         // Le position anchor c'est le guid du parent de l'objet contenant
         // position-anchor: --UI; /* le -- est obligatoire sinon on a pas la réf à l'ancrage */
         
