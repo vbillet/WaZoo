@@ -4,4 +4,8 @@ function uuidv4() {
   );
 }
 
+function between(v,min,max){
+  return (v >= min) && (v <= max)
+}
+
 console.log("WaZoo V0.1 is starting...")

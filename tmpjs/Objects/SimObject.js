@@ -16,14 +16,9 @@ class SimObject {
         if (data!=undefined){
             try{
                 var _data = JSON.parse(data)
-                if (_data.className !== this.className) 
-                {
-                    console.error('ClassName error :' + this.className)
-                    return
-                }
+                if (_data.className !== this.className) { throw 'ClassName error :' + this.constructor.name } 
             } catch(error) {
-                console.log("Wrong data !!! "+error)
-                return
+                throw "Wrong data !!! "+error
             }
             this.load(_data)
         } else {

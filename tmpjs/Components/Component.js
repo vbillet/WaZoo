@@ -3,18 +3,9 @@ class Component {
     #parentSimObject = undefined
 
     constructor(data=undefined) {
-        this.componentClass = this.constructor.name
         if (data!=undefined){
-            try{
-                if (data.componentClass !== this.className) 
-                {
-                    console.error('componentClass error :' + this.componentClass)
-                    return
-                }
-            } catch(error) {
-                console.log("Wrong data !!! "+error)
-                return
-            }
+            if (data.componentClass !== this.constructor.name) { throw 'componentClass error :' + this.componentClass }
+            this.componentClass = this.constructor.name
             this.load(data)
         } 
     }
@@ -22,14 +13,8 @@ class Component {
     load(data){ }
 
     setSimObject(obj) {
-        if (!(obj instanceof SimObject)) {
-            console.error("Try to set SimObject, but parameter is not a SimObject !")
-            return
-        }
-        if (this.#parentSimObject !== undefined) {
-            console.error("Parent SimObject is already defined !")
-            return
-        }
+        if (!(obj instanceof SimObject)) { throw "Try to set SimObject, but parameter is not a SimObject !" }
+        if (this.#parentSimObject !== undefined) { throw "Parent SimObject is already defined !" }
         this.#parentSimObject = obj
     }
 
