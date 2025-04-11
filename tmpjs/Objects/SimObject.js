@@ -42,16 +42,18 @@ class SimObject {
             return false
         }
         this.components.push(component)
+        component.setSimObject(this)
         return true
     }
 
     addChild(simObj) {
         if (!(simObj instanceof SimObject)) { 
             console.error("This is not a SimObject : " + simObj)
-            return false
+            return undefined
         }
         this.children.push(simObj)
         simObj.setParent(this)
+        return simObj
     }
 
     //******************************************************************************************

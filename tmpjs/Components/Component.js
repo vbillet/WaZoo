@@ -1,6 +1,7 @@
 class Component {
-    guid = ''
     componentClass = ''
+    #parentSimObject = undefined
+
     constructor(data=undefined) {
         this.componentClass = this.constructor.name
         if (data!=undefined){
@@ -15,15 +16,24 @@ class Component {
                 return
             }
             this.load(data)
-        } else {
-            this.guid = uuidv4()
-        }
+        } 
     }
 
-    load(data){
-        //try{ this.testValue = data.testValue } catch(error) { console.warn("TestValue not set in data.") }
-        try{ this.guid = data.guid } catch(e) { console.warn("GUID is not set in data.") }
+    load(data){ }
+
+    setSimObject(obj) {
+        if (!(obj instanceof SimObject)) {
+            console.error("Try to set SimObject, but parameter is not a SimObject !")
+            return
+        }
+        if (this.#parentSimObject !== undefined) {
+            console.error("Parent SimObject is already defined !")
+            return
+        }
+        this.#parentSimObject = obj
     }
+
+    getSimObject(){ return this.#parentSimObject }
 
     toString(){ return JSON.stringify(this) }
 }
