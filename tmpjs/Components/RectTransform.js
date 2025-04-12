@@ -123,5 +123,100 @@ class RectTransform extends Component {
 
         return pos
     }
+
+    setTopLeft(){
+        this.anchorPreset = TOPLEFT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+
+    setTopRight(){
+        this.anchorPreset = TOPRIGHT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+
+    setTopStretch(){
+        this.anchorPreset = TOPSTRETCH
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+
+    setTop(){
+        this.anchorPreset = TOP
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0.5,0.5)
+        this.position = new Point2D(-this.width/2,0)
+    }
+
+    setCenterLeft(){
+        this.anchorPreset = CENTERLEFT
+        this.verticalAnchor = new Point2D(0.5,0.5)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0, -this.height/2)
+    }
+
+    setCenter(){
+        this.anchorPreset = CENTER
+        this.verticalAnchor = new Point2D(0.5,0.5)
+        this.horizontalAnchor = new Point2D(0.5,0.5)
+        this.position = new Point2D(-this.width/2, -this.height/2)
+    }
+
+    setCenterRight(){
+        this.anchorPreset = CENTERRIGHT
+        this.verticalAnchor = new Point2D(0.5,0.5)
+        this.horizontalAnchor = new Point2D(1,1)
+        this.position = new Point2D(-this.width, -this.height/2)
+    }
+
+    setBottomLeft(){
+        this.anchorPreset = BOTTOMLEFT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+
+    setBottomRight(){
+        this.anchorPreset = BOTTOMRIGHT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+
+    setBottom(){
+        this.anchorPreset = BOTTOM
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0.5,0.5)
+        this.position = new Point2D(-this.width/2,0)
+    }
+
+    setStretchLeft() {
+        this.anchorPreset = STRETCHLEFT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+    setCenterStretchY() { 
+        this.anchorPreset = CENTERSTRETCHY
+        this.verticalAnchor = new Point2D(0.5,0.5)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,-this.height/2)
+    }
+    setStretchRight() {
+        this.anchorPreset = STRETCHRIGHT
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
+    setStretch() { 
+        this.anchorPreset = STRETCH
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.position = new Point2D(0,0)
+    }
 }
 console.log("RectTransform Component Loaded")

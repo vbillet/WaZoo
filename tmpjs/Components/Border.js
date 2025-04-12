@@ -11,7 +11,7 @@ class Border extends Component {
         try{ this.kind = data.kind }   catch(e) { console.warn("No border Kind") }
         try{ this.color = data.color } catch(e) { console.warn("No border Color") }
     }
-    getCSS(){ return "border:" + this.width + 'px ' + this.kind + ' ' + this.color.getCSS() + ';' }
+    getCSS(){ return "border:" + this.width + 'px ' + this.kind + ' ' + this.color.getCSS() + ';box-sizing: border-box;' }
 }
 
 console.log("Border Component Loaded")
