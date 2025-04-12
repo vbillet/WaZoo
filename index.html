@@ -22,6 +22,10 @@
         jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
         UI = new BodyObject(jsBody)
         d = UI.addChild(new DivObject())
+        e = UI.addChild(new DivObject())
+        console.log(UI.toString())
+        e.setParent(d)
+        console.log(UI.toString())
         
        /* d = new DomObject()
         d.addComponent(new RectTransform())

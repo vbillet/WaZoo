@@ -3,9 +3,9 @@ class Component {
     #parentSimObject = undefined
 
     constructor(data=undefined) {
+        this.componentClass = this.constructor.name
         if (data!=undefined){
             if (data.componentClass !== this.constructor.name) { throw 'componentClass error :' + this.componentClass }
-            this.componentClass = this.constructor.name
             this.load(data)
         } 
     }

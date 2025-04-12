@@ -11,15 +11,38 @@ const APY = {
     BOTTOM: 16,
     STRETCHY: 24
 }
+const XAXIS = 7
+const YAXIS = 56
+
+const TOPLEFT = APY.TOP+APX.LEFT
+const TOP = APY.TOP+APX.CENTERX
+const TOPRIGHT = APY.TOP+APX.RIGHT
+const TOPSTRETCH = APY.TOP+APX.STRETCHX
+
+const CENTERLEFT = APY.CENTERY+APX.LEFT
+const CENTER = APY.CENTERY+APX.CENTERX
+const CENTERRIGHT = APY.CENTERY+APX.RIGHT
+const CENTERSTRETCHX = APY.CENTERY+APX.STRETCHX
+
+const BOTTOMLEFT = APY.BOTTOM+APX.LEFT
+const BOTTOM = APY.BOTTOM+APX.CENTERX
+const BOTTOMRIGHT = APY.BOTTOM+APX.RIGHT
+const BOTTOMSTRETCH = APY.BOTTOM+APX.STRETCHX
+
+const STRETCHLEFT = APY.STRETCHY+APX.LEFT
+const CENTERSTRETCHY = APY.STRETCHY+APX.CENTERX
+const STRETCHRIGHT = APY.STRETCHY+APX.RIGHT
+const STRETCH = APY.STRETCHY+APX.STRETCHX
 
 class RectTransform extends Component {
-    anchorPreset = "0"
-    width = "100"
-    height = "50"
-    top = "5"
-    left = "20"
-    right = "0"
-    bottom = "0"
+    anchorPreset =  APY.TOP + APX.LEFT
+    position = new Point2D(0,0)
+    size = new Point2D(250,30)
+    verticalAnchor = new Point2D(0,1)
+    horizontalAnchor = new Point2D(0,1)
+    rotation = 0
+    pivot = new Point2D(0,0)
+    scale = new Point2D(1,1)
 
     constructor(data=undefined) { 
         super(data); 
@@ -30,62 +53,75 @@ class RectTransform extends Component {
         super.load(data)
     }
     getCSS(){ 
-        let position = "position:fixed;"
-        // le anchor-name c'est le guid de l'objet parent du contenant
-        position = position + 'anchor-name:--'+this.getSimObject().getParent().guid+';'
+        if (this.getSimObject() === undefined) { return "" }
+        if (this.getSimObject().getParent() === undefined) { return "" }
+        console.log(this.getSimObject())
+        let pos= "position:fixed;"
         // Le position anchor c'est le guid du parent de l'objet contenant
-        // position-anchor: --UI; /* le -- est obligatoire sinon on a pas la réf à l'ancrage */
-        
-        // Défini dans un autre composant
-        // border:1px solid #ff0000;
-        
+        pos = pos + "position-anchor:--"+this.getSimObject().getParent().guid+";"
+        // le anchor-name c'est le guid de l'objet contenant
+        pos = pos + "anchor-name:--"+this.getSimObject().guid+";"
+       
         // La largeur est définie seulement si on est pas en mode stretch <>3
-        // width:100px; 
+        if ((this.anchorPreset & XAXIS) != APX.STRETCHX) { 
+            pos = pos + "width:"+this.size.x+"px;" 
+        }
         
         // Ancré à gauche, au centre, et stretch <> 2
-        // inset-inline-start: calc(anchor(0%) + 102px);                          
+        if ((this.anchorPreset & XAXIS) != APX.RIGHT) { 
+            pos = pos + "inset-inline-start: calc(anchor("+(this.horizontalAnchor.x*100)+"%)"
+            if (this.position.x<0){
+                pos = pos+" - "+(this.position.x*-1)+"px);"
+            } else {
+                pos = pos+" + "+this.position.x+"px);"
+            }
+        }
         
         // Ancré à droite, au centre, et stretch <> 1
-        // inset-inline-end: calc(anchor(60%));
+        if ((this.anchorPreset & XAXIS) != APX.LEFT) { 
+            pos = pos + "inset-inline-end: calc(anchor("+(this.horizontalAnchor.y*100)+"%)"
+            if (this.position.x<0){ //TODO: Vérifier le signe sur l'ancgrafe à droite
+                pos = pos+" - "+(this.position.x*-1)+"px);"
+            } else {
+                pos = pos+" + "+this.position.x+"px);"
+            }
+        }
 
         // La hauteur est définie seulement si on est pas en mode stretch <> 24
-        // height:22px; 
+        if ((this.anchorPreset & YAXIS) != APY.STRETCHY) { 
+            pos = pos + 'height:'+this.size.y+"px;"
+        }
 
         // Ancré en haut, au centre, et stretch <> 16
-        // inset-block-start: calc(anchor(0%) - 12px); /* (height + bordure)/2 */
+        if ((this.anchorPreset & YAXIS) != APY.BOTTOM) { 
+            pos = pos + "inset-block-start: calc(anchor("+(this.verticalAnchor.x*100)+"%)"
+            if (this.position.y<0){ //TODO: Vérifier le signe sur l'ancgrafe à droite
+                pos = pos+" - "+(this.position.y*-1)+"px);"
+            } else {
+                pos = pos+" + "+this.position.y+"px);"
+            }
+        }
 
         // Ancré en bas, au centre, et stretch <> 8
-        /*inset-block-end: calc(anchor(90%));*/
+        if ((this.anchorPreset & YAXIS) != APY.TOP) { 
+            pos = pos + "inset-block-end: calc(anchor("+(this.verticalAnchor.y*100)+"%)"
+            if (this.position.y<0){ //TODO: Vérifier le signe sur l'ancgrafe à droite
+                pos = pos+" - "+(this.position.y*-1)+"px);"
+            } else {
+                pos = pos+" + "+this.position.y+"px);"
+            }
+        }
 
         // La rotation seulement sur Z, on va rester simple
-        /*transform: rotate(45deg);*/
+        pos = pos + "transform:rotate("+this.rotation+"deg);"
         
         // Le pivot de rotation
-        // transform-origin: 36px 12px;
+        pos = pos + "transform-origin:"+this.pivot.x+"px "+this.pivot.y+"px;"
         
         // l'échelle du composant
-        // scale: 0.7 0.7;
+        pos = pos + "scale:"+this.scale.x+" "+this.scale.y+";"
 
-        //Défini dans un autre composant
-        //background: rgba(255,0,0,0.1);
-
-        if ((this.anchorPreset && APX.LEFT)==APX.LEFT) { 
-            position = position + "left: "+this.left 
-        }
-        if ((this.anchorPreset && APX.RIGHT)==APX.RIGHT) { 
-            position = position + "right: "+this.right 
-        }
-        if ((this.anchorPreset && APX.RIGHT)!=APX.RIGHT) { 
-            position = position + "right: "+this.right 
-        }
-
-        return "position:fixed;" +
-                     "width:" + this.width + 'px;' +
-                     "height:" + this.height + 'px;' +
-                     "top:" + this.top +'px;' +
-                     "left:" + this.left +'px;' + 
-                     "width:" + this.width +'px;' + 
-                     "height:" + this.height +'px;'
+        return pos
     }
 }
 console.log("RectTransform Component Loaded")
