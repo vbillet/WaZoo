@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>RectTransform Test</title>
-</head>
+    <style>
+        * { padding: 0; margin:0; position: relative; background-color: black;color:white;overflow: hidden;}
+    </style>
 <script type="text/javascript" src="/tmpjs/utils.js"></script>
 <script type="text/javascript" src="/tmpjs/types.js"></script>
 <script type="text/javascript" src="/tmpjs/Components/Component.js"></script>
@@ -13,36 +15,124 @@
 <script type="text/javascript" src="/tmpjs/Objects/DomObject.js"></script>
 <script type="text/javascript" src="/tmpjs/Objects/BodyObject.js"></script>
 <script type="text/javascript" src="/tmpjs/Objects/DivObject.js"></script>
-<body>
+
+<script>
+    var obj = undefined
+    function TL() { obj.getComponent('RectTransform').setTopLeft(); obj.render(); refreshCtrls() }
+    function T()  { obj.getComponent('RectTransform').setTop(); obj.render(); refreshCtrls() }
+    function TR() { obj.getComponent('RectTransform').setTopRight(); obj.render(); refreshCtrls() }
+    function TS() {}
+    function CL() { obj.getComponent('RectTransform').setCenterLeft(); obj.render(); refreshCtrls() }
+    function C()  { obj.getComponent('RectTransform').setCenter(); obj.render(); refreshCtrls() }
+    function CR() { obj.getComponent('RectTransform').setCenterRight(); obj.render(); refreshCtrls() }
+    function CS() {}
+    function BL() { obj.getComponent('RectTransform').setBottomLeft(); obj.render(); refreshCtrls() }
+    function B()  { obj.getComponent('RectTransform').setBottom(); obj.render(); refreshCtrls() }
+    function BR() { obj.getComponent('RectTransform').setBottomRight(); obj.render(); refreshCtrls() }
+    function BS() {}
+    function SL() {}
+    function SC() {}
+    function SR() {}
+    function S()  {}
+    function init(){
+        //let jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
+        let UI = new BodyObject()
+
+        obj = UI.addChild(new DivObject())
+        r = obj.getComponent('RectTransform')
+        r.setTopLeft()
+        obj.render()
+        refreshCtrls()
+    }
+    function setInputValue(elt,val) {
+        document.getElementById(elt).setAttribute("value",val)
+        document.getElementById(elt).value = val
+    }
+
+    function getInputValue(elt) {
+        return document.getElementById(elt).value
+    }
+
+    function refreshCtrls() {
+        r = obj.getComponent("RectTransform")
+        setInputValue("position.x",         r.position.x)
+        setInputValue("position.y",         r.position.y)
+        setInputValue("size.x",             r.size.x)
+        setInputValue("size.y",             r.size.y)
+        setInputValue("horizontalAnchor.x", r.horizontalAnchor.x)
+        setInputValue("horizontalAnchor.y", r.horizontalAnchor.y)
+        setInputValue("verticalAnchor.x",   r.verticalAnchor.x)
+        setInputValue("verticalAnchor.y",   r.verticalAnchor.y)
+        refreshComp()
+    }
+
+    function refreshComp() {
+        r = obj.getComponent("RectTransform")
+        console.log(getInputValue("position.x"))
+        r.position.x = getInputValue("position.x")
+        r.position.y = getInputValue("position.y")
+        r.size.x = getInputValue("size.x")
+        r.size.y = getInputValue("size.y")
+        r.horizontalAnchor.x = getInputValue("horizontalAnchor.x")
+        r.horizontalAnchor.y = getInputValue("horizontalAnchor.y")
+        r.verticalAnchor.x = getInputValue("verticalAnchor.x")
+        r.verticalAnchor.y = getInputValue("verticalAnchor.y")
+        r.pivot.x = getInputValue("pivot.x")
+        r.pivot.y = getInputValue("pivot.y")
+        r.scale.x = getInputValue("scale.x")
+        r.scale.y = getInputValue("scale.y")
+        r.rotation = getInputValue("rotation")
+        obj.render()
+    }
+</script>
+</head>
+
+<body onLoad="init();">
     <div></div>
-    <div style="width:200px;margin-left: auto; margin-right: 0;">
+    <div style="width:200px;margin-left: auto; top:300px;margin-right: 15px;z-index: 99;">
+        <button style="width:45px;" onClick="TL();">TL</button>
+        <button style="width:45px;" onClick="T();" >T </button>
+        <button style="width:45px;" onClick="TR();">TR</button>
+        <button style="width:45px;" onClick="TS();">TS</button><br/>
+        <button style="width:45px;" onClick="CL();">CL</button>
+        <button style="width:45px;" onClick="C();" >C </button>
+        <button style="width:45px;" onClick="CR();">CR</button>
+        <button style="width:45px;" onClick="CS();">CS</button><br/>
+        <button style="width:45px;" onClick="BL();">BL</button>
+        <button style="width:45px;" onClick="B();" >B </button>
+        <button style="width:45px;" onClick="BR();">BR</button>
+        <button style="width:45px;" onClick="BS();">BS</button><br/>
+        <button style="width:45px;" onClick="SL();">SL</button>
+        <button style="width:45px;" onClick="SC();">SC</button>
+        <button style="width:45px;" onClick="SR();">SR</button>
+        <button style="width:45px;" onClick="S();" >S </button>
+        <hr/>
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Position : </span>
-        <input type="text" id="position.x" style="width: 32px;text-align: right;" value="0"/>
-        <input type="text" id="position.y" style="width: 32px;text-align: right;" value="0"/>
-        <br/>
+        <input type="text" id="position.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();" />
+        <input type="text" id="position.y" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();" /><br/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Size : </span>
-        <input type="text" id="size.x" style="width: 32px;text-align: right;" value="0"/>
-        <input type="text" id="size.y" style="width: 32px;text-align: right;" value="0"/>
-        <hr/>
+        <input type="text" id="size.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/>
+        <input type="text" id="size.y" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/><hr/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Horizontal : </span>
-        <input type="text" id="horizontalAnchor.x" style="width: 32px;text-align: right;" value="0"/>
-        <input type="text" id="horizontalAnchor.y" style="width: 32px;text-align: right;" value="0"/>
-        <br/>
+        <input type="text" id="horizontalAnchor.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/>
+        <input type="text" id="horizontalAnchor.y" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/><br/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Vertical : </span>
-        <input type="text" id="verticalAnchor.x" style="width: 32px;text-align: right;" value="0"/>
-        <input type="text" id="varticalAnchor.y" style="width: 32px;text-align: right;" value="0"/>
-        <hr/>
+        <input type="text" id="verticalAnchor.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/>
+        <input type="text" id="verticalAnchor.y" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/><hr/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Pivot : </span>
-        <input type="text" id="pivot.x" style="width: 32px;text-align: right;" value="0"/>
-        <input type="text" id="pivot.y" style="width: 32px;text-align: right;" value="0"/>
-        <br/>
+        <input type="text" id="pivot.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/>
+        <input type="text" id="pivot.y" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/><br/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Rotation : </span>
-        <input type="text" id="rotation" style="width: 32px;text-align: right;" value="0"/>
-        <hr/>
+        <input type="text" id="rotation" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();"/><hr/>
+
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Scale : </span>
-        <input type="text" id="scale.x" style="width: 32px;text-align: right;" value="1"/>
-        <input type="text" id="scale.y" style="width: 32px;text-align: right;" value="1"/>
-        <br/>
+        <input type="text" id="scale.x" style="width: 32px;text-align: right;" value="1" onkeyup="refreshComp();"/>
+        <input type="text" id="scale.y" style="width: 32px;text-align: right;" value="1" onkeyup="refreshComp();"/><br/>
     </div>
 </body>
 </html>
