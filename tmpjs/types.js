@@ -19,4 +19,45 @@ class Point2D{
     }
 }
 
+class Rect{
+    constructor(pTop = 0, pLeft = 0, pBottom = 0, pRight = 0){
+        this.Top = pTop
+        this.Left = pLeft
+        this.Bottom = pBottom
+        this.Right = pRight
+    }
+    setWidth(w=25)  { this.Right = this.Left + w }
+    setHeight(h=25) { this.Bottom = this.Top + h }
+    width()  { return this.Right - this.Left }
+    height() { return this.Bottom - this.Top }
+    setTop(t=0) { 
+        let h = this.Bottom-this.Top
+        this.Top = t
+        this.Bottom = t + h
+    }
+    setLeft(l=0) { 
+        let w = this.Right-this.Left
+        this.Left = l
+        this.Right = l + w
+    }
+    setBottom(b=0){
+        let h = this.Bottom-this.Top
+        this.Top = b - h
+        this.Bottom = b
+    }
+    setRight(r=0) { 
+        let w = this.Right-this.Left
+        this.Left = r - w
+        this.Right = r
+    }
+    setTopLeft(p=new Point2D()) {
+        this.setLeft(p.x)
+        this.setTop(p.y)
+    }
+    setBottomRight(p=new Point2D()) {
+        this.setRight(p.x)
+        this.setBottom(p.y)
+    }
+}
+
 console.log("Basic dataTypes loaded.")

@@ -21,11 +21,11 @@
     function TL() { obj.getComponent('RectTransform').setTopLeft(); obj.render(); refreshCtrls() }
     function T()  { obj.getComponent('RectTransform').setTop(); obj.render(); refreshCtrls() }
     function TR() { obj.getComponent('RectTransform').setTopRight(); obj.render(); refreshCtrls() }
-    function TS() {}
+    function TS() { obj.getComponent('RectTransform').setTopStretch(); obj.render(); refreshCtrls() }
     function CL() { obj.getComponent('RectTransform').setCenterLeft(); obj.render(); refreshCtrls() }
     function C()  { obj.getComponent('RectTransform').setCenter(); obj.render(); refreshCtrls() }
     function CR() { obj.getComponent('RectTransform').setCenterRight(); obj.render(); refreshCtrls() }
-    function CS() {}
+    function CS() { obj.getComponent('RectTransform').setCenterStretch(); obj.render(); refreshCtrls() }
     function BL() { obj.getComponent('RectTransform').setBottomLeft(); obj.render(); refreshCtrls() }
     function B()  { obj.getComponent('RectTransform').setBottom(); obj.render(); refreshCtrls() }
     function BR() { obj.getComponent('RectTransform').setBottomRight(); obj.render(); refreshCtrls() }
@@ -55,10 +55,10 @@
 
     function refreshCtrls() {
         r = obj.getComponent("RectTransform")
-        setInputValue("position.x",         r.position.x)
-        setInputValue("position.y",         r.position.y)
-        setInputValue("size.x",             r.size.x)
-        setInputValue("size.y",             r.size.y)
+        setInputValue("position.x",         r.rect.Left)
+        setInputValue("position.y",         r.rect.Top)
+        setInputValue("size.x",             r.rect.Right)
+        setInputValue("size.y",             r.rect.Bottom)
         setInputValue("horizontalAnchor.x", r.horizontalAnchor.x)
         setInputValue("horizontalAnchor.y", r.horizontalAnchor.y)
         setInputValue("verticalAnchor.x",   r.verticalAnchor.x)
@@ -69,10 +69,10 @@
     function refreshComp() {
         r = obj.getComponent("RectTransform")
         console.log(getInputValue("position.x"))
-        r.position.x = getInputValue("position.x")
-        r.position.y = getInputValue("position.y")
-        r.size.x = getInputValue("size.x")
-        r.size.y = getInputValue("size.y")
+        r.rect.Left = getInputValue("position.x")
+        r.rect.Top = getInputValue("position.y")
+        r.rect.Right = getInputValue("size.x")
+        r.rect.Bottom = getInputValue("size.y")
         r.horizontalAnchor.x = getInputValue("horizontalAnchor.x")
         r.horizontalAnchor.y = getInputValue("horizontalAnchor.y")
         r.verticalAnchor.x = getInputValue("verticalAnchor.x")

@@ -36,8 +36,8 @@ const STRETCH = APY.STRETCHY+APX.STRETCHX
 
 class RectTransform extends Component {
     anchorPreset =  APY.TOP + APX.LEFT
-    position = new Point2D(0,0)
-    size = new Point2D(250,30)
+    rect = new Rect(0,0,250,30)
+    //size = new Point2D(250,30)
     verticalAnchor = new Point2D(0,1)
     horizontalAnchor = new Point2D(0,1)
     rotation = 0
@@ -62,7 +62,42 @@ class RectTransform extends Component {
         pos = pos + "position-anchor:--"+this.getSimObject().getParent().guid+";"
         // le anchor-name c'est le guid de l'objet contenant
         pos = pos + "anchor-name:--"+this.getSimObject().guid+";"
-       
+
+        pos = pos + "inset-inline-start: calc(anchor("+(this.horizontalAnchor.x*100)+"%)"
+        if (this.rect.Left < 0){
+            pos = pos+" - "+(this.rect.Left*-1)+"px);"
+        } else {
+            pos = pos+" + "+this.rect.Left+"px);"
+        }
+
+        pos = pos + "inset-inline-end: calc(anchor("+(this.horizontalAnchor.y*100)+"%)"
+        if (this.rect.Right<0){ 
+            pos = pos+" - "+(this.rect.Right*-1)+"px);"
+        } else {
+            pos = pos+" + "+this.rect.Right+"px);"
+        }
+
+        pos = pos + "inset-block-start: calc(anchor("+(this.verticalAnchor.x*100)+"%)"
+        if (this.rect.Top<0){ //TODO: Vérifier le signe sur l'ancgrafe à droite
+            pos = pos+" - "+(this.rect.Top*-1)+"px);"
+        } else {
+            pos = pos+" + "+this.rect.Top+"px);"
+        }
+
+        pos = pos + "inset-block-end: calc(anchor("+(this.verticalAnchor.y*100)+"%)"
+        if (this.rect.Bottom<0){ //TODO: Vérifier le signe sur l'ancgrafe à droite
+            pos = pos+" - "+(this.rect.Bottom*-1)+"px);"
+        } else {
+            pos = pos+" + "+this.rect.Bottom+"px);"
+        }
+
+        if (this.verticalAnchor.x == this.verticalAnchor.y) {
+            pos = pos + "width:" + this.rect.width()
+        }
+        if (this.horizontalAnchor.x == this.horizontalAnchor.y) {
+            pos = pos + "height:" + this.rect.height()
+        }
+        /*
         // La largeur est définie seulement si on est pas en mode stretch <>3
         if ((this.anchorPreset & XAXIS) != APX.STRETCHX) { 
             pos = pos + "width:"+this.size.x+"px;" 
@@ -118,12 +153,12 @@ class RectTransform extends Component {
             }
             posDebug = posDebug + "C"
         }
-
+        */
         // La rotation seulement sur Z, on va rester simple
         pos = pos + "transform:rotate("+this.rotation+"deg);"
         
         // Le pivot de rotation
-        pos = pos + "transform-origin:"+this.pivot.x+"px "+this.pivot.y+"px;"
+        pos = pos + "transform-origin:"+(this.pivot.x*100)+"% "+(this.pivot.y*100)+"%;"
         
         // l'échelle du composant
         pos = pos + "scale:"+this.scale.x+" "+this.scale.y+";"
@@ -133,8 +168,8 @@ class RectTransform extends Component {
 
     setTopLeft(){
         this.anchorPreset = TOPLEFT
-        this.verticalAnchor = new Point2D(0,1)
-        this.horizontalAnchor = new Point2D(0,1)
+        this.verticalAnchor = new Point2D(0,0)
+        this.horizontalAnchor = new Point2D(0,0)
     }
 
     setTopRight(){
