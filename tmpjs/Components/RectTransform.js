@@ -37,7 +37,6 @@ const STRETCH = APY.STRETCHY+APX.STRETCHX
 class RectTransform extends Component {
     anchorPreset =  APY.TOP + APX.LEFT
     rect = new Rect(0,0,250,30)
-    //size = new Point2D(250,30)
     verticalAnchor = new Point2D(0,1)
     horizontalAnchor = new Point2D(0,1)
     rotation = 0
