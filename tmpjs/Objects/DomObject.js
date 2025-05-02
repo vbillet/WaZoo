@@ -9,7 +9,7 @@ class DomObject extends SimObject{
             if (typeof comp.getCSS !== undefined)
                 css = css + comp.getCSS()
         }
-        console.log(css)
+        //console.log(css)
         this.getDomElement().style = css;
         this.postUpdate()
     }

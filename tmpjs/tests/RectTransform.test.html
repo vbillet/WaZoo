@@ -29,11 +29,11 @@
     function BL() { obj.getComponent('RectTransform').setBottomLeft(); obj.render(); refreshCtrls() }
     function B()  { obj.getComponent('RectTransform').setBottom(); obj.render(); refreshCtrls() }
     function BR() { obj.getComponent('RectTransform').setBottomRight(); obj.render(); refreshCtrls() }
-    function BS() {}
-    function SL() {}
-    function SC() {}
-    function SR() {}
-    function S()  {}
+    function BS() { obj.getComponent('RectTransform').setBottomStretch(); obj.render(); refreshCtrls() }
+    function SL() { obj.getComponent('RectTransform').setStretchLeft(); obj.render(); refreshCtrls() }
+    function SC() { obj.getComponent('RectTransform').setStretchCenter(); obj.render(); refreshCtrls() }
+    function SR() { obj.getComponent('RectTransform').setStretchRight(); obj.render(); refreshCtrls() }
+    function S()  { obj.getComponent('RectTransform').setStretch(); obj.render(); refreshCtrls() }
     function init(){
         //let jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
         let UI = new BodyObject()
@@ -45,8 +45,9 @@
         refreshCtrls()
     }
     function setInputValue(elt,val) {
-        document.getElementById(elt).setAttribute("value",val)
-        document.getElementById(elt).value = val
+        let e = document.getElementById(elt)
+        e.setAttribute("value",val)
+        e.value = val
     }
 
     function getInputValue(elt) {
@@ -55,10 +56,10 @@
 
     function refreshCtrls() {
         r = obj.getComponent("RectTransform")
-        setInputValue("position.x",         r.rect.Left)
-        setInputValue("position.y",         r.rect.Top)
-        setInputValue("size.x",             r.rect.Right)
-        setInputValue("size.y",             r.rect.Bottom)
+        setInputValue("position.x",         r.rect.left)
+        setInputValue("position.y",         r.rect.top)
+        setInputValue("size.x",             r.rect.right)
+        setInputValue("size.y",             r.rect.bottom)
         setInputValue("horizontalAnchor.x", r.horizontalAnchor.x)
         setInputValue("horizontalAnchor.y", r.horizontalAnchor.y)
         setInputValue("verticalAnchor.x",   r.verticalAnchor.x)
@@ -69,10 +70,10 @@
     function refreshComp() {
         r = obj.getComponent("RectTransform")
         console.log(getInputValue("position.x"))
-        r.rect.Left = getInputValue("position.x")
-        r.rect.Top = getInputValue("position.y")
-        r.rect.Right = getInputValue("size.x")
-        r.rect.Bottom = getInputValue("size.y")
+        r.rect.left = getInputValue("position.x")
+        r.rect.top = getInputValue("position.y")
+        r.rect.right = getInputValue("size.x")
+        r.rect.bottom = getInputValue("size.y")
         r.horizontalAnchor.x = getInputValue("horizontalAnchor.x")
         r.horizontalAnchor.y = getInputValue("horizontalAnchor.y")
         r.verticalAnchor.x = getInputValue("verticalAnchor.x")
