@@ -5,6 +5,7 @@
     <title>RectTransform Test</title>
     <style>
         * { padding: 0; margin:0; position: relative; background-color: black;color:white;overflow: hidden;}
+        img { background-color: transparent!important;}
     </style>
 <script type="text/javascript" src="/tmpjs/utils.js"></script>
 <script type="text/javascript" src="/tmpjs/types.js"></script>
@@ -18,22 +19,22 @@
 
 <script>
     var obj = undefined
-    function TL() { obj.getComponent('RectTransform').setTopLeft(); obj.render(); refreshCtrls() }
-    function T()  { obj.getComponent('RectTransform').setTop(); obj.render(); refreshCtrls() }
-    function TR() { obj.getComponent('RectTransform').setTopRight(); obj.render(); refreshCtrls() }
-    function TS() { obj.getComponent('RectTransform').setTopStretch(); obj.render(); refreshCtrls() }
-    function CL() { obj.getComponent('RectTransform').setCenterLeft(); obj.render(); refreshCtrls() }
-    function C()  { obj.getComponent('RectTransform').setCenter(); obj.render(); refreshCtrls() }
-    function CR() { obj.getComponent('RectTransform').setCenterRight(); obj.render(); refreshCtrls() }
-    function CS() { obj.getComponent('RectTransform').setCenterStretch(); obj.render(); refreshCtrls() }
-    function BL() { obj.getComponent('RectTransform').setBottomLeft(); obj.render(); refreshCtrls() }
-    function B()  { obj.getComponent('RectTransform').setBottom(); obj.render(); refreshCtrls() }
-    function BR() { obj.getComponent('RectTransform').setBottomRight(); obj.render(); refreshCtrls() }
-    function BS() { obj.getComponent('RectTransform').setBottomStretch(); obj.render(); refreshCtrls() }
-    function SL() { obj.getComponent('RectTransform').setStretchLeft(); obj.render(); refreshCtrls() }
-    function SC() { obj.getComponent('RectTransform').setStretchCenter(); obj.render(); refreshCtrls() }
-    function SR() { obj.getComponent('RectTransform').setStretchRight(); obj.render(); refreshCtrls() }
-    function S()  { obj.getComponent('RectTransform').setStretch(); obj.render(); refreshCtrls() }
+    function TL(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setTopLeft(); obj.render(); refreshCtrls() }
+    function T(btn)  { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setTop(); obj.render(); refreshCtrls() }
+    function TR(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setTopRight(); obj.render(); refreshCtrls() }
+    function TS(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setTopStretch(); obj.render(); refreshCtrls() }
+    function CL(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setCenterLeft(); obj.render(); refreshCtrls() }
+    function C(btn)  { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setCenter(); obj.render(); refreshCtrls() }
+    function CR(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setCenterRight(); obj.render(); refreshCtrls() }
+    function CS(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setCenterStretch(); obj.render(); refreshCtrls() }
+    function BL(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setBottomLeft(); obj.render(); refreshCtrls() }
+    function B(btn)  { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setBottom(); obj.render(); refreshCtrls() }
+    function BR(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setBottomRight(); obj.render(); refreshCtrls() }
+    function BS(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setBottomStretch(); obj.render(); refreshCtrls() }
+    function SL(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setStretchLeft(); obj.render(); refreshCtrls() }
+    function SC(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setStretchCenter(); obj.render(); refreshCtrls() }
+    function SR(btn) { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setStretchRight(); obj.render(); refreshCtrls() }
+    function S(btn)  { setBtnTransparent(); btn.style.backgroundColor = "aquamarine"; obj.getComponent('RectTransform').setStretch(); obj.render(); refreshCtrls() }
     function init(){
         //let jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
         let UI = new BodyObject()
@@ -43,6 +44,14 @@
         r.setTopLeft()
         obj.render()
         refreshCtrls()
+    }
+
+    function setBtnTransparent(){
+        btns = document.getElementsByClassName("APBtn")
+        console.log(btns)
+        for (let ii=0; ii<btns.length;ii++) {
+            btns[ii].style.backgroundColor ="transparent"
+        }
     }
     function setInputValue(elt,val) {
         let e = document.getElementById(elt)
@@ -90,23 +99,23 @@
 
 <body onLoad="init();">
     <div></div>
-    <div style="width:200px;margin-left: auto; top:300px;margin-right: 15px;z-index: 99;">
-        <button style="width:45px;" onClick="TL();">TL</button>
-        <button style="width:45px;" onClick="T();" >T </button>
-        <button style="width:45px;" onClick="TR();">TR</button>
-        <button style="width:45px;" onClick="TS();">TS</button><br/>
-        <button style="width:45px;" onClick="CL();">CL</button>
-        <button style="width:45px;" onClick="C();" >C </button>
-        <button style="width:45px;" onClick="CR();">CR</button>
-        <button style="width:45px;" onClick="CS();">CS</button><br/>
-        <button style="width:45px;" onClick="BL();">BL</button>
-        <button style="width:45px;" onClick="B();" >B </button>
-        <button style="width:45px;" onClick="BR();">BR</button>
-        <button style="width:45px;" onClick="BS();">BS</button><br/>
-        <button style="width:45px;" onClick="SL();">SL</button>
-        <button style="width:45px;" onClick="SC();">SC</button>
-        <button style="width:45px;" onClick="SR();">SR</button>
-        <button style="width:45px;" onClick="S();" >S </button>
+    <div style="width:200px;margin-left: auto; top:200px;margin-right: 15px;z-index: 99;">
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="TL(this);"><img src="../../assets/RectTransform/TL.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="T(this);" ><img src="../../assets/RectTransform/T.png" /></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="TR(this);"><img src="../../assets/RectTransform/TR.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="TS(this);"><img src="../../assets/RectTransform/TS.png"/></button><br/>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="CL(this);"><img src="../../assets/RectTransform/CL.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="C(this);" ><img src="../../assets/RectTransform/C.png" /></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="CR(this);"><img src="../../assets/RectTransform/CR.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="CS(this);"><img src="../../assets/RectTransform/CS.png"/></button><br/>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="BL(this);"><img src="../../assets/RectTransform/BL.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="B(this);" ><img src="../../assets/RectTransform/B.png" /></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="BR(this);"><img src="../../assets/RectTransform/BR.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="BS(this);"><img src="../../assets/RectTransform/BS.png"/></button><br/>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="SL(this);"><img src="../../assets/RectTransform/SL.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="SC(this);"><img src="../../assets/RectTransform/SC.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="SR(this);"><img src="../../assets/RectTransform/SR.png"/></button>
+        <button class="APBtn" style="width:45px;height:45px;border:none;background-color: transparent;" onClick="S(this);" ><img src="../../assets/RectTransform/S.png" /></button>
         <hr/>
         <span style="font-family: Arial, Helvetica, sans-serif;width: 90px;display: inline-block;text-align: right;">Position : </span>
         <input type="text" id="position.x" style="width: 32px;text-align: right;" value="0" onkeyup="refreshComp();" />
