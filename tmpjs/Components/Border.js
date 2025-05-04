@@ -18,14 +18,14 @@ class Border extends Component {
 
     load(data) {
         super.load(data)
-        try{ this.width.top = data.width.top }                 catch(e) { console.warn("No border Top Width") }
-        try{ this.width.left = data.width.left }               catch(e) { console.warn("No border Left Width") }
-        try{ this.width.right = data.width.right }             catch(e) { console.warn("No border Right Width") }
-        try{ this.width.bottom = data.width.bottom }           catch(e) { console.warn("No border Bottom Width") }
-        try{ this.topStyle = data.topStyle }                   catch(e) { console.warn("No border topStyle") }
-        try{ this.leftStyle = data.leftStyle }                 catch(e) { console.warn("No border leftStyle") }
-        try{ this.rightStyle = data.rightStyle }               catch(e) { console.warn("No border rightStyle") }
-        try{ this.bottomStyle = data.bottomStyle }             catch(e) { console.warn("No border bottomStyle") }
+        try{ this.width.top = data.width.top }                 catch(e) { console.warn("Bad border Top Width") }
+        try{ this.width.left = data.width.left }               catch(e) { console.warn("Bad border Left Width") }
+        try{ this.width.right = data.width.right }             catch(e) { console.warn("Bad border Right Width") }
+        try{ this.width.bottom = data.width.bottom }           catch(e) { console.warn("Bad border Bottom Width") }
+        try{ this.topStyle = data.topStyle }                   catch(e) { console.warn("Bad border topStyle") }
+        try{ this.leftStyle = data.leftStyle }                 catch(e) { console.warn("Bad border leftStyle") }
+        try{ this.rightStyle = data.rightStyle }               catch(e) { console.warn("Bad border rightStyle") }
+        try{ this.bottomStyle = data.bottomStyle }             catch(e) { console.warn("Bad border bottomStyle") }
         try{ this.topColor.r = data.topColor.r }               catch(e) { console.warn("Bad border Top Color") }
         try{ this.topColor.g = data.topColor.g }               catch(e) { console.warn("Bad border Top Color") }
         try{ this.topColor.b = data.topColor.b }               catch(e) { console.warn("Bad border Top Color") }
