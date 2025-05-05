@@ -14,7 +14,8 @@ class SimObject {
     constructor(data=undefined) {
         if (data!=undefined){
             try{
-                var _data = JSON.parse(data)
+                //var _data = JSON.parse(data)
+                var _data = data
                 if (_data.className !== this.constructor.name) { throw 'ClassName error :' + this.constructor.name } 
             } catch(error) {
                 throw "Wrong data !!! "+error
@@ -138,6 +139,25 @@ class SimObject {
     load(data){
         try{ this.name = data.name } catch(e) { console.warn("Name not set in datas !") }
         try{ this.guid = data.guid } catch(e) { console.warn("GUID not set in datas !") }
+        console.log(JSON.stringify(data.children[0]))
+        let json = ""
+        let obj = undefined
+        let cnt = data.children.length
+        for (let ii=0; ii<cnt; ii++) {
+            json = data.children[ii]
+            eval("obj = new " + data.children[ii].className + "(json);")
+            this.addChild(obj)
+        }
+
+        cnt = data.components.length
+        for (let ii=0; ii<cnt; ii++) {
+            //json = JSON.stringify(data.components[ii])
+            json = data.components[ii]
+            console.log(json)
+            eval("obj = new " + data.components[ii].componentClass + "(json);")
+            this.addComponent(obj)
+        }
+        this.render()
     }
 
     setName(pName){

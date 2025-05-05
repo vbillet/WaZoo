@@ -23,7 +23,7 @@ class Text extends Component {
     }
 
     getCSS(){ 
-        result = ""
+        let result = ""
         result = result + "font-family:" + this.fontFamily + ";"
         result = result + "font-size:" + this.fontSize + "px;"
         result = result + "font-style:" + this.fontStyle + ";"
@@ -36,3 +36,4 @@ class Text extends Component {
         return result
     }
 }
+console.log("Text Component Loaded")

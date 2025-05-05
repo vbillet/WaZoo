@@ -10,8 +10,11 @@
     <script type="text/javascript" src="tmpjs/utils.js"></script>
     <script type="text/javascript" src="tmpjs/types.js"></script>
     <script type="text/javascript" src="tmpjs/Components/Component.js"></script>
-    <script type="text/javascript" src="tmpjs/Components/Border.js"></script>
     <script type="text/javascript" src="tmpjs/Components/RectTransform.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/Border.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/BoxShadow.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/Background.js"></script>
+    <script type="text/javascript" src="tmpjs/Components/Text.js"></script>
     <script type="text/javascript" src="tmpjs/Objects/SimObject.js"></script>
     <script type="text/javascript" src="tmpjs/Objects/DomObject.js"></script>
     <script type="text/javascript" src="tmpjs/Objects/BodyObject.js"></script>
@@ -19,14 +22,40 @@
 </head>
 <body>
     <script>
-        jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
-        let UI = new BodyObject(jsBody)
-        let d = UI.addChild(new DivObject())
+        //jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[]}'
+        jsBody = '{"className":"BodyObject","guid":"d2068636-b443-4fd5-8e3d-ea7b23350cf9","name":"","components":[],"children":[{"className":"DivObject","guid":"ad90b419-7a86-490e-b465-1973839d4692","name":"","components":[{"componentClass":"RectTransform","anchorPreset":8,"rect":{"top":-15,"left":-75,"bottom":50,"right":250},"verticalAnchor":{"x":0.5,"y":0.5},"horizontalAnchor":{"x":0.5,"y":0.5},"rotation":45,"pivot":{"x":0.5,"y":0.5},"scale":{"x":1,"y":1}},{"componentClass":"Border","width":{"top":1,"left":1,"bottom":1,"right":1},"topStyle":"solid","leftStyle":"solid","rightStyle":"solid","bottomStyle":"solid","topColor":{"r":255,"g":0,"b":0,"a":1},"leftColor":{"r":255,"g":0,"b":0,"a":1},"rightColor":{"r":255,"g":0,"b":0,"a":1},"bottomColor":{"r":255,"g":0,"b":0,"a":1},"topLeftRadius":0,"topRightRadius":0,"bottomLeftRadius":0,"bottomRightRadius":0}],"children":[{"className":"DivObject","guid":"0098494f-d21a-4f62-a172-2020627284a6","name":"","components":[{"componentClass":"RectTransform","anchorPreset":68,"rect":{"top":6,"left":6,"bottom":4,"right":200},"verticalAnchor":{"x":0,"y":1},"horizontalAnchor":{"x":0,"y":1},"rotation":0,"pivot":{"x":0,"y":0},"scale":{"x":1,"y":1}},{"componentClass":"Border","width":{"top":1,"left":1,"bottom":1,"right":1},"topStyle":"solid","leftStyle":"solid","rightStyle":"solid","bottomStyle":"solid","topColor":{"r":0,"g":255,"b":0,"a":1},"leftColor":{"r":0,"g":255,"b":0,"a":1},"rightColor":{"r":0,"g":255,"b":0,"a":1},"bottomColor":{"r":0,"g":255,"b":0,"a":1},"topLeftRadius":0,"topRightRadius":0,"bottomLeftRadius":0,"bottomRightRadius":0},{"componentClass":"Text","fontFile":"","fontFamily":"Arial","fontSize":14,"fontStyle":"normal","fontVariant":"normal","fontWeight":400,"lineHeight":14,"_text":"Hello World !"}],"children":[]}]}]}'
+        let UI = new BodyObject(JSON.parse(jsBody))
+        //UI.render()
+        /*let d = UI.addChild(new DivObject())
         let r = d.getComponent("RectTransform")
-        r.width = 250
-        r.height = 50
+        r.rect.top = 10
+        r.rect.left = 50
+        r.rect.right = 250
+        r.rect.bottom = 50
+        r.pivot = new Point2D(0.5,0.5)
+        r.rotation = 45
         r.setCenter()
         d.render()
+        let t = d.addChild(new DivObject())
+        t.addComponent(new Text())
+        r = t.getComponent("RectTransform")
+        r.setStretch()
+        r.rect.top = 6
+        r.rect.left = 6
+        r.rect.right = 200
+        r.rect.bottom = 4
+        r = t.getComponent("Border")
+        r.width = new Rect(1,1,1,1)
+        r.topColor = new Color(0,255,0,1)
+        r.leftColor = new Color(0,255,0,1)
+        r.rightColor = new Color(0,255,0,1)
+        r.bottomColor = new Color(0,255,0,1)
+        r = t.getComponent("Text")
+        console.log(r)
+        r.text = "Hello World !"
+        t.render()*/
+        
+
         /*e = UI.addChild(new DivObject())
 
         console.log(UI.toString())

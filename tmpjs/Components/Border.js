@@ -18,6 +18,11 @@ class Border extends Component {
 
     load(data) {
         super.load(data)
+        this.width = new Rect(1,1,1,1)
+        this.topColor = new Color(255,0,0,1)
+        this.leftColor = new Color(255,0,0,1)
+        this.rightColor = new Color(255,0,0,1)
+        this.bottomColor = new Color(255,0,0,1)
         try{ this.width.top = data.width.top }                 catch(e) { console.warn("Bad border Top Width") }
         try{ this.width.left = data.width.left }               catch(e) { console.warn("Bad border Left Width") }
         try{ this.width.right = data.width.right }             catch(e) { console.warn("Bad border Right Width") }
@@ -68,7 +73,7 @@ class Border extends Component {
         result = result + this.bottomStyle + " "
         result = result + this.bottomColor.getCSS() + ";"
 
-        result = result + "border-radius:" + topLeftRadius + "px "+topRightRadius + "px " + bottomRightRadius + "px " + bottomLeftRadius + "px;"
+        result = result + "border-radius:" + this.topLeftRadius + "px " + this.topRightRadius + "px " + this.bottomRightRadius + "px " + this.bottomLeftRadius + "px;"
 
         return result + ';box-sizing: border-box;' 
     }

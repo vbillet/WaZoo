@@ -89,3 +89,4 @@ class Background extends Component {
         return result
     }
 }
+console.log("Background Component Loaded")
