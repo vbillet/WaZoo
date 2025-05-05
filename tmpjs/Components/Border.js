@@ -43,7 +43,7 @@ class Border extends Component {
         try{ this.bottomColor.b = data.bottomColor.b }         catch(e) { console.warn("Bad border Bottom Color") }
         try{ this.bottomColor.a = data.bottomColor.a }         catch(e) { console.warn("Bad border Bottom Color") }
         try{ this.topLeftRadius = data.topLeftRadius }         catch(e) { console.warn("Bad Top Left radius") }
-        try{ this.topRightRadius = data.topRightRadius }       catch(e) { console.warn("Bad Top Rightradius") }
+        try{ this.topRightRadius = data.topRightRadius }       catch(e) { console.warn("Bad Top Right radius") }
         try{ this.bottomLeftRadius = data.bottomLeftRadius }   catch(e) { console.warn("Bad Bottom Left radius") }
         try{ this.bottomRightRadius = data.bottomRightRadius } catch(e) { console.warn("Bad bottom Right radius") }
     }
