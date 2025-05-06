@@ -29,6 +29,18 @@ class Border extends Component {
 
     constructor(data=undefined) { super(data); if (data != undefined) { this.load(data) } }
 
+    #checkBorderStyles(style){
+        let ok = false
+        let cnt = BS_Styles.length
+        for(ii=0; ii<cnt; ii++){
+            if (BS_Styles[ii] == style) {
+                ok = true
+                break
+            }
+        }
+        return ok
+    }
+
     load(data) {
         super.load(data)
         this.width = new Rect(1,1,1,1)
@@ -90,18 +102,6 @@ class Border extends Component {
         result = result + "border-radius:" + this.topLeftRadius + "px " + this.topRightRadius + "px " + this.bottomRightRadius + "px " + this.bottomLeftRadius + "px;"
 
         return result + ';box-sizing: border-box;' 
-    }
-
-    #checkBorderStyles(style){
-        let ok = false
-        let cnt = BS_Styles.length
-        for(ii=0; ii<cnt; ii++){
-            if (BS_Styles[ii] == style) {
-                ok = true
-                break
-            }
-        }
-        return ok
     }
 
     setColor(color) {
