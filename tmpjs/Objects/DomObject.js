@@ -1,8 +1,12 @@
 class DomObject extends SimObject{
     #elt = -1
+    #dirty = true
+
     constructor(data=undefined) { super(data); this.#elt = -1; }
+
     render(){
         this.update()
+        if (!this.dirty) { return }
         let css = ''
         let cnt = this.components.length
         for (var ii = 0; ii<cnt; ii++){
@@ -28,7 +32,9 @@ class DomObject extends SimObject{
             return ""
         }
     }
-    
+
+    setDirty(){ this.#dirty = true }
+
     /*getInnerHTML(){
         if (this.getChildCount != 0) { return this.#createAnchor() } else { return "" }
     }*/

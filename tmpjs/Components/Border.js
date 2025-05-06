@@ -1,3 +1,16 @@
+const BS_None = "none"
+const BS_Hidden = "hidden"
+const BS_Dotted = "dotted"
+const BS_Dashed = "dashed"
+const BS_Solid = "solid"
+const BS_Double = "double"
+const BS_Groove = "groove"
+const BS_Ridge = "ridge"
+const BS_Inset = "inset"
+const BS_Outset = "outset"
+
+const BS_Styles = [BS_None,BS_Hidden,BS_Dotted,BS_Dashed,BS_Solid,BS_Double,BS_Groove,BS_Ridge,BS_Inset,BS_Outset]
+
 class Border extends Component {
     width = new Rect(1,1,1,1)
     topStyle = "solid"
@@ -52,6 +65,7 @@ class Border extends Component {
         try{ this.bottomLeftRadius = data.bottomLeftRadius }   catch(e) { console.warn("Bad Bottom Left radius") }
         try{ this.bottomRightRadius = data.bottomRightRadius } catch(e) { console.warn("Bad bottom Right radius") }
     }
+
     getCSS(){ 
         let result = "border-top:"
         result = result + this.width.top + "px "
@@ -76,6 +90,47 @@ class Border extends Component {
         result = result + "border-radius:" + this.topLeftRadius + "px " + this.topRightRadius + "px " + this.bottomRightRadius + "px " + this.bottomLeftRadius + "px;"
 
         return result + ';box-sizing: border-box;' 
+    }
+
+    #checkBorderStyles(style){
+        let ok = false
+        let cnt = BS_Styles.length
+        for(ii=0; ii<cnt; ii++){
+            if (BS_Styles[ii] == style) {
+                ok = true
+                break
+            }
+        }
+        return ok
+    }
+
+    setColor(color) {
+        if (!(color instanceof Color)){
+            console.error("Invalid border color")
+            return
+        }
+        this.topColor = color
+        this.leftColor = color
+        this.rightColor = color
+        this.bottomColor = color
+        this.getSimObject().setDirty()
+    }
+
+    setWidth(width) {
+        this.width = new Rect(width,width,width,width)
+        this.getSimObject().setDirty()
+    }
+
+    setStyle(style) {
+        if (!this.#checkBorderStyles()) {
+            console.error("Wrong style applied to this border")
+            return
+        }
+        this.topStyle = style
+        this.leftStyle = style
+        this.rightStyle = style
+        this.bottomStyle = style
+        this.getSimObject().setDirty()
     }
 }
 
