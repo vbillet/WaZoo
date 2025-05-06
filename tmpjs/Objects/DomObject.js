@@ -1,5 +1,6 @@
 class DomObject extends SimObject{
-
+    #elt = -1
+    constructor(data=undefined) { super(data); this.#elt = -1; }
     render(){
         this.update()
         let css = ''
@@ -13,16 +14,34 @@ class DomObject extends SimObject{
         this.getDomElement().style = css;
         this.postUpdate()
     }
+
+    _addToDomInterface(elt){
+        this.#elt = DomInterface.get().addElement(elt)
+    }
     
     createElement(tag) { 
         let elt = document.createElementNS("http://www.w3.org/1999/xhtml", tag) 
         elt.setAttribute('id',this.guid)
+        this._addToDomInterface(elt)
+        /*console.log(this.getParent())
+        this.getParent().getDomElement().appendChild(elt)*/
         return elt
     }
 
-    start() { this.render() }
+    start() { 
+        //console.log(":::: " +this.getParent())
+        this.render()
+        let cnt = this.getChildCount()
+        for(let ii=0; ii<cnt; ii++) {
+            this.getChildByIndex(ii).start()
+        }
+    }
 
-    getDomElement() { return document.getElementById(this.guid) }
+    getDomElement() { 
+        //return document.getElementById(this.guid) 
+        console.log(this.#elt)
+        return DomInterface.get().getElement(this.#elt)
+    }
 }
 
 console.log("DomObject Loaded")

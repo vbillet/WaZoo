@@ -50,7 +50,28 @@ class RectTransform extends Component {
 
     load(data) {
         super.load(data)
+        this.rect = new Rect(0,0,250,30)
+        this.verticalAnchor = new Point2D(0,1)
+        this.horizontalAnchor = new Point2D(0,1)
+        this.rotation = 0
+        this.pivot = new Point2D(0,0)
+        this.scale = new Point2D(1,1)
+        try{ this.rect.top = data.rect.top }                     catch(e) { console.warn("Bad border Top Width") } // TODO: changer les messages
+        try{ this.rect.left = data.rect.left }                   catch(e) { console.warn("Bad border Top Width") }
+        try{ this.rect.right = data.rect.right }                 catch(e) { console.warn("Bad border Top Width") }
+        try{ this.rect.bottom = data.rect.bottom }               catch(e) { console.warn("Bad border Top Width") }
+        try{ this.verticalAnchor.x = data.verticalAnchor.x }     catch(e) { console.warn("Bad border Top Width") }
+        try{ this.verticalAnchor.y = data.verticalAnchor.y }     catch(e) { console.warn("Bad border Top Width") }
+        try{ this.horizontalAnchor.x = data.horizontalAnchor.x } catch(e) { console.warn("Bad border Top Width") }
+        try{ this.horizontalAnchor.y = data.horizontalAnchor.y } catch(e) { console.warn("Bad border Top Width") }
+        try{ this.pivot.x = data.pivot.x }                       catch(e) { console.warn("Bad border Top Width") }
+        try{ this.pivot.y = data.pivot.y }                       catch(e) { console.warn("Bad border Top Width") }
+        try{ this.scale.x = data.scale.x }                       catch(e) { console.warn("Bad border Top Width") }
+        try{ this.scale.y = data.scale.y }                       catch(e) { console.warn("Bad border Top Width") }
+        try{ this.rotation = data.rotation }                     catch(e) { console.warn("Bad border Top Width") }
+
     }
+
     getCSS(){ 
         if (this.getSimObject() === undefined) { return "" }
         if (this.getSimObject().getParent() === undefined) { return "" }

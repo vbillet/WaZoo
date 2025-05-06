@@ -6,7 +6,8 @@ class Text extends Component {
     fontVariant = "normal"
     fontWeight = 400
     lineHeight = 14
-
+    _text = "Text"
+    
     constructor(data=undefined) { super(data); if (data != undefined) { this.load(data) } }
 
     load(data) {

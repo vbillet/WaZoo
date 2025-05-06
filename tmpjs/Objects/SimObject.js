@@ -25,7 +25,7 @@ class SimObject {
             this.guid = uuidv4()
         }
         this.className = this.constructor.name
-        this.start()
+        //this.start()
     }
 
     // Clone le SimObject
@@ -110,7 +110,8 @@ class SimObject {
     }
 
     getChildByIndex(idx){
-        if ((idx>=length(this.children)) || (idx<0)) {
+        let cnt = this.children.length
+        if ((idx>cnt) || (idx<0)) {
             console.error("invalid child index")
             return undefined
         }
@@ -128,7 +129,7 @@ class SimObject {
     }
 
     getChildCount(){
-        return length(this.children)
+        return this.children.length
     }
 
     toString(){ return JSON.stringify(this) }
@@ -142,9 +143,11 @@ class SimObject {
         console.log(JSON.stringify(data.children[0]))
         let json = ""
         let obj = undefined
+        let comp = undefined
         let cnt = data.children.length
         for (let ii=0; ii<cnt; ii++) {
             json = data.children[ii]
+            console.log(this.guid + "==>" + json.guid)
             eval("obj = new " + data.children[ii].className + "(json);")
             this.addChild(obj)
         }
@@ -154,10 +157,10 @@ class SimObject {
             //json = JSON.stringify(data.components[ii])
             json = data.components[ii]
             console.log(json)
-            eval("obj = new " + data.components[ii].componentClass + "(json);")
-            this.addComponent(obj)
+            eval("comp = new " + data.components[ii].componentClass + "(json);")
+            this.addComponent(comp)
         }
-        this.render()
+        //this.render()
     }
 
     setName(pName){
