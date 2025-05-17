@@ -25,8 +25,8 @@ SOFTWARE.
 class BoxShadow extends Component {
     _color = new Color(255,0,0,1)
     _offset = new Point2D(0,0)
-    _blurRadius = 10
-    _spreadRadius = 10
+    _blurRadius = 8
+    _spreadRadius = 2
     _inset = false
 
     constructor(data=undefined) { super(data); if (data != undefined) { this.load(data) } }
