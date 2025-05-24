@@ -1,4 +1,29 @@
-class SimObject {
+/*
+MIT License
+
+Copyright (c) 2025 BILLET Vincent
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+import Utils from "./utils.mjs"
+
+export default class SimObject {
     #parent = undefined
     className = ''
     guid = ''
@@ -23,7 +48,7 @@ class SimObject {
             }
             this.load(_data)
         } else {
-            this.guid = uuidv4()
+            this.guid = Utils.uuidv4()
         }
         this.className = this.constructor.name
         //this.start()
@@ -141,7 +166,7 @@ class SimObject {
     load(data){
         try{ this.name = data.name } catch(e) { console.warn("Name not set in datas !") }
         try{ this.guid = data.guid } catch(e) { console.warn("GUID not set in datas !") }
-        console.log(JSON.stringify(data.children[0]))
+        //console.log(JSON.stringify(data.children[0]))
         let json = ""
         let obj = undefined
         let comp = undefined
@@ -161,7 +186,6 @@ class SimObject {
             eval("comp = new " + data.components[ii].componentClass + "(json);")
             this.addComponent(comp)
         }
-        //this.render()
     }
 
     setName(pName){
@@ -185,4 +209,5 @@ class SimObject {
         simObj.children.push(this)
     }
 }
+
 console.log("SimObject Class Loaded")
