@@ -21,8 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+import { Color,Point2D } from "../Objects/types.mjs"
+import Component from "./Component.mjs"
 
-class BoxShadow extends Component {
+export default class BoxShadow extends Component {
     _color = new Color(255,0,0,1)
     _offset = new Point2D(0,0)
     _blurRadius = 8
@@ -37,15 +39,15 @@ class BoxShadow extends Component {
                                     data._color.g,
                                     data._color.b,
                                     data._color.a)
-        } catch(e) { console.warn("Bad shadow color" + e) }
+        } catch(e) { DomInterface.get().warn("Bad shadow color" + e) }
 
         try{ this._offset = new Point2D(data._offset.x,
                                        data._offset.y)
-        } catch(e) { console.warn("Bad shadow offset" + e) }
+        } catch(e) { DomInterface.get().warn("Bad shadow offset" + e) }
 
-        try{ this._blurRadius = data._blurRadius }      catch(e) { console.warn("Missing blurRadius" + e) }
-        try{ this._spreadRadius = data._spreadRadius }  catch(e) { console.warn("Missing spreadRadius" + e) }
-        try{ this._inset = data._inset }                catch(e) { console.warn("Missing inset setting" + e) }
+        try{ this._blurRadius = data._blurRadius }      catch(e) { DomInterface.get().warn("Missing blurRadius" + e) }
+        try{ this._spreadRadius = data._spreadRadius }  catch(e) { DomInterface.get().warn("Missing spreadRadius" + e) }
+        try{ this._inset = data._inset }                catch(e) { DomInterface.get().warn("Missing inset setting" + e) }
 
     }
 

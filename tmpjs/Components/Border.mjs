@@ -1,3 +1,5 @@
+import Component from "./Component.mjs"
+import { Rect,Color } from "../Objects/types.mjs"
 const BS_None = "none"
 const BS_Hidden = "hidden"
 const BS_Dotted = "dotted"
@@ -11,20 +13,20 @@ const BS_Outset = "outset"
 
 const BS_Styles = [BS_None,BS_Hidden,BS_Dotted,BS_Dashed,BS_Solid,BS_Double,BS_Groove,BS_Ridge,BS_Inset,BS_Outset]
 
-class Border extends Component {
-    width = new Rect(1,1,1,1)
-    topStyle = "solid"
-    leftStyle = "solid"
-    rightStyle = "solid"
-    bottomStyle = "solid"
-    topColor = new Color(255,0,0,1)
-    leftColor = new Color(255,0,0,1)
-    rightColor = new Color(255,0,0,1)
-    bottomColor = new Color(255,0,0,1)
-    topLeftRadius = 0
-    topRightRadius = 0
-    bottomLeftRadius = 0
-    bottomRightRadius = 0
+export default class Border extends Component {
+    _width = new Rect(1,1,1,1)
+    _topStyle = "solid"
+    _leftStyle = "solid"
+    _rightStyle = "solid"
+    _bottomStyle = "solid"
+    _topColor = new Color(255,0,0,1)
+    _leftColor = new Color(255,0,0,1)
+    _rightColor = new Color(255,0,0,1)
+    _bottomColor = new Color(255,0,0,1)
+    _topLeftRadius = 0
+    _topRightRadius = 0
+    _bottomLeftRadius = 0
+    _bottomRightRadius = 0
 
 
     constructor(data=undefined) { super(data); if (data != undefined) { this.load(data) } }
@@ -132,6 +134,34 @@ class Border extends Component {
         this.bottomStyle = style
         this.getSimObject().setDirty()
     }
+
+    get width() { return this._width }
+    get topStyle() { return this._topStyle }
+    get leftStyle() { return this._leftStyle }
+    get rightStyle() { return this._rightStyle }
+    get bottomStyle() { return this._bottomStyle }
+    get topColor() { return this._topColor }
+    get leftColor() { return this._leftColor }
+    get rightColor() { return this._rightColor }
+    get bottomColor() { return this._bottomColor }
+    get topLeftRadius() { return this._topLeftRadius }
+    get topRightRadius() { return this._topRightRadius }
+    get bottomLeftRadius() { return this._bottomLeftRadius }
+    get bottomRightRadius() { return this._bottomRightRadius }
+
+    set width(val) { this._width = val }
+    set topStyle(val) { this._topStyle = val }
+    set leftStyle(val) { this._leftStyle = val }
+    set rightStyle(val) { this._rightStyle = val }
+    set bottomStyle(val) { this._bottomStyle = val }
+    set topColor(val) { this._topColor = val }
+    set leftColor(val) { this._leftColor = val }
+    set rightColor(val) { this._rightColor = val }
+    set bottomColor(val) { this._bottomColor = val }
+    set topLeftRadius(val) { this._topLeftRadius = val }
+    set topRightRadius(val) { this._topRightRadius = val }
+    set bottomLeftRadius(val) { this._bottomLeftRadius = val }
+    set bottomRightRadius(val) { this._bottomRightRadius = val }
 }
 
 console.log("Border Component Loaded")

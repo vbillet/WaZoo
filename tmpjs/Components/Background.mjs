@@ -1,3 +1,5 @@
+import { Color,Point2D } from "../Objects/types.mjs"
+
 const BlendNormal      = "normal"
 const BlendMultiply    = "multiply"
 const BlendScreen      = "screen"
@@ -25,16 +27,22 @@ const OriginBorderBox  = "border-box"
 const OriginPaddingBox = "padding-box"
 const OriginContentBox = "content-box"
 
-const RepeatRepeatX = "repeat-x"
-const RepeatRepeatY = "repeat-y"
-const RepeatRepeat = "repeat"
-const RepeatSpace = "space"
-const RepeatRound = "round"
+const RepeatRepeatX  = "repeat-x"
+const RepeatRepeatY  = "repeat-y"
+const RepeatRepeat   = "repeat"
+const RepeatSpace    = "space"
+const RepeatRound    = "round"
 const RepeatNoRepeat = "no-repeat"
 
 const AttachScroll = "scroll"
 const AttachFixed = "fixed"
 const AttachLocal = "local"
+
+const BLENDINGS = [BlendNormal,BlendMultiply,BlendScreen,BlendOverlay,BlendDarken,BlendLighten,BlendColorDodge,BlendColorBurn,BlendHardLight,BlendSoftLight,BlendDifference,BlendExclusion,BlendHue,BlendSaturation,BlendColor,BlendLuminosity]
+const CLIPS     = [ClipBorderBox,ClipPaddingBox,ClipContentBox,ClipText,ClipVorderArea]
+const ORIGINS   = [OriginBorderBox,OriginPaddingBox,OriginContentBox]
+const REPEATS   = [RepeatRepeatX,RepeatRepeatY,RepeatRepeat,RepeatSpace,RepeatRound,RepeatNoRepeat]
+const ATTACHS   = [AttachScroll,AttachFixed,AttachLocal]
 
 class Background extends Component {
     image = ""
@@ -78,7 +86,7 @@ class Background extends Component {
         }
         result = result + "background-color:" + this.color.getCSS() + ";"
         result = result + "background-position:" + this.position.x + "px " + this.position.y + "px;"
-        result = result + "background-size:" +this.size.x + "px" + this.size.y + "px;"
+        result = result + "background-size:" + this.size.x + "px" + this.size.y + "px;"
         result = result + "background-repeat:" + this.repeat + ";"
         result = result + "background-blend-mode:" + this.blendMode + ";"
         result = result + "background-clip:" + this.clip + ";"

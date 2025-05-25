@@ -21,6 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+import Component from "./Component.mjs"
+import { Color } from "../Objects/types.mjs"
 
 class Text extends Component {
     _fontFile = ""
@@ -38,18 +40,18 @@ class Text extends Component {
 
     load(data) {
         super.load(data)
-        try{ this._fontFile = data._fontFile }       catch(e) { console.warn("No fontFile defined, default value will be used. " + e) }
-        try{ this._fontFamily = data._fontFamily }   catch(e) { console.warn("No fontFamily defined, default value will be used. " + e) }
-        try{ this._fontSize = data._fontSize }       catch(e) { console.warn("No fontSize defined, default value will be used. " + e) }
-        try{ this._fontStyle = data._fontStyle }     catch(e) { console.warn("No fontStyle defined, default value will be used. " + e) }
-        try{ this._fontVariant = data._fontVariant } catch(e) { console.warn("No fontVariant defined, default value will be used. " + e) }
-        try{ this._fontWeight = data._fontWeight }   catch(e) { console.warn("No fontWeight defined, default value will be used. " + e) }
-        try{ this._lineHeight = data._lineHeight }   catch(e) { console.warn("No lineHeight defined, default value will be used. " + e) }
-        try{ this._text = data._text }               catch(e) { console.warn("No text defined, default value will be used. " + e) }
+        try{ this._fontFile = data._fontFile }       catch(e) { DomInterface.warn("No fontFile defined, default value will be used. " + e) }
+        try{ this._fontFamily = data._fontFamily }   catch(e) { DomInterface.warn("No fontFamily defined, default value will be used. " + e) }
+        try{ this._fontSize = data._fontSize }       catch(e) { DomInterface.warn("No fontSize defined, default value will be used. " + e) }
+        try{ this._fontStyle = data._fontStyle }     catch(e) { DomInterface.warn("No fontStyle defined, default value will be used. " + e) }
+        try{ this._fontVariant = data._fontVariant } catch(e) { DomInterface.warn("No fontVariant defined, default value will be used. " + e) }
+        try{ this._fontWeight = data._fontWeight }   catch(e) { DomInterface.warn("No fontWeight defined, default value will be used. " + e) }
+        try{ this._lineHeight = data._lineHeight }   catch(e) { DomInterface.warn("No lineHeight defined, default value will be used. " + e) }
+        try{ this._text = data._text }               catch(e) { DomInterface.warn("No text defined, default value will be used. " + e) }
         try{ this._color = new Color(data._color.r, 
             data._color.g,
             data._color.b,
-            data._color.a) }                         catch(e) { console.warn("Invalid color, default color will be used. " + e) }
+            data._color.a) }                         catch(e) { DomInterface.warn("Invalid color, default color will be used. " + e) }
     }
 
     set text(txt){

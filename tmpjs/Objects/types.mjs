@@ -1,4 +1,4 @@
-class Color{
+export class Color{
     constructor(pr = 0, pg = 0, pb = 0,pa = 1){
         if (!(between(pr,0,255))) { throw "Invalid Red Componennt, must be between 0 and 255." }
         if (!(between(pg,0,255))) { throw "Invalid Green Componennt, must be between 0 and 255." }
@@ -12,14 +12,14 @@ class Color{
     getCSS(){ return 'rgba('+this.r+','+this.g+','+this.b+','+this.a+')' }
 }
 
-class Point2D{
+export class Point2D{
     constructor(px = 0,py = 0){
         this.x = px
         this.y = py
     }
 }
 
-class Rect{
+export class Rect{
     constructor(pTop = 0, pLeft = 0, pBottom = 0, pRight = 0){
         this.top = pTop
         this.left = pLeft

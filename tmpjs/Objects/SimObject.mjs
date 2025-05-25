@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 import Utils from "./utils.mjs"
+import Component from "../Components/Component.mjs"
+import ComponenentFactory from "./ComponentFactory.mjs"
 
 export default class SimObject {
     #parent = undefined
@@ -183,6 +185,7 @@ export default class SimObject {
             //json = JSON.stringify(data.components[ii])
             json = data.components[ii]
             console.log(json)
+            ComponenentFactory.createComponent(data.components[ii].componentClass,json)
             eval("comp = new " + data.components[ii].componentClass + "(json);")
             this.addComponent(comp)
         }
