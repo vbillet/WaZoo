@@ -1,83 +1,193 @@
+import DomInterface from "../Objects/DomInterface.mjs"
 import { Color,Point2D } from "../Objects/types.mjs"
 
-const BlendNormal      = "normal"
-const BlendMultiply    = "multiply"
-const BlendScreen      = "screen"
-const BlendOverlay     = "overlay"
-const BlendDarken      = "darken"
-const BlendLighten     = "lighten"
-const BlendColorDodge  = "color-dodge"
-const BlendColorBurn   = "color-burn" 
-const BlendHardLight   = "hard-light"
-const BlendSoftLight   = "soft-light"
-const BlendDifference  = "difference"
-const BlendExclusion   = "exclusion"
-const BlendHue         = "hue"
-const BlendSaturation  = "saturation"
-const BlendColor       = "color"
-const BlendLuminosity  = "luminosity"
+export const BlendNormal      = "normal"
+export const BlendMultiply    = "multiply"
+export const BlendScreen      = "screen"
+export const BlendOverlay     = "overlay"
+export const BlendDarken      = "darken"
+export const BlendLighten     = "lighten"
+export const BlendColorDodge  = "color-dodge"
+export const BlendColorBurn   = "color-burn" 
+export const BlendHardLight   = "hard-light"
+export const BlendSoftLight   = "soft-light"
+export const BlendDifference  = "difference"
+export const BlendExclusion   = "exclusion"
+export const BlendHue         = "hue"
+export const BlendSaturation  = "saturation"
+export const BlendColor       = "color"
+export const BlendLuminosity  = "luminosity"
 
-const ClipBorderBox    = "border-box"
-const ClipPaddingBox   = "padding-box"
-const ClipContentBox   = "content-box"
-const ClipText         = "text"
-const ClipVorderArea   = "border-area"
+export const ClipBorderBox    = "border-box"
+export const ClipPaddingBox   = "padding-box"
+export const ClipContentBox   = "content-box"
+export const ClipText         = "text"
+export const ClipVorderArea   = "border-area"
 
-const OriginBorderBox  = "border-box"
-const OriginPaddingBox = "padding-box"
-const OriginContentBox = "content-box"
+export const OriginBorderBox  = "border-box"
+export const OriginPaddingBox = "padding-box"
+export const OriginContentBox = "content-box"
 
-const RepeatRepeatX  = "repeat-x"
-const RepeatRepeatY  = "repeat-y"
-const RepeatRepeat   = "repeat"
-const RepeatSpace    = "space"
-const RepeatRound    = "round"
-const RepeatNoRepeat = "no-repeat"
+export const RepeatRepeatX  = "repeat-x"
+export const RepeatRepeatY  = "repeat-y"
+export const RepeatRepeat   = "repeat"
+export const RepeatSpace    = "space"
+export const RepeatRound    = "round"
+export const RepeatNoRepeat = "no-repeat"
 
-const AttachScroll = "scroll"
-const AttachFixed = "fixed"
-const AttachLocal = "local"
+export const AttachScroll = "scroll"
+export const AttachFixed = "fixed"
+export const AttachLocal = "local"
 
-const BLENDINGS = [BlendNormal,BlendMultiply,BlendScreen,BlendOverlay,BlendDarken,BlendLighten,BlendColorDodge,BlendColorBurn,BlendHardLight,BlendSoftLight,BlendDifference,BlendExclusion,BlendHue,BlendSaturation,BlendColor,BlendLuminosity]
-const CLIPS     = [ClipBorderBox,ClipPaddingBox,ClipContentBox,ClipText,ClipVorderArea]
-const ORIGINS   = [OriginBorderBox,OriginPaddingBox,OriginContentBox]
-const REPEATS   = [RepeatRepeatX,RepeatRepeatY,RepeatRepeat,RepeatSpace,RepeatRound,RepeatNoRepeat]
-const ATTACHS   = [AttachScroll,AttachFixed,AttachLocal]
+export const BLENDINGS = [BlendNormal,BlendMultiply,BlendScreen,BlendOverlay,BlendDarken,BlendLighten,BlendColorDodge,BlendColorBurn,BlendHardLight,BlendSoftLight,BlendDifference,BlendExclusion,BlendHue,BlendSaturation,BlendColor,BlendLuminosity]
+export const CLIPS     = [ClipBorderBox,ClipPaddingBox,ClipContentBox,ClipText,ClipVorderArea]
+export const ORIGINS   = [OriginBorderBox,OriginPaddingBox,OriginContentBox]
+export const REPEATS   = [RepeatRepeatX,RepeatRepeatY,RepeatRepeat,RepeatSpace,RepeatRound,RepeatNoRepeat]
+export const ATTACHS   = [AttachScroll,AttachFixed,AttachLocal]
 
-class Background extends Component {
-    image = ""
-    color = new Color(255,0,0,1)
-    position = new Point2D(0,0)
-    size = new Point2D(256,256)
-    repeat = "repeat"
-    blendMode = "normal"
-    clip = "content-box"
-    origin = "content-box"
-    positionAnchorX = "left"
-    positionAnchorY = "top"
-    attachment = "local"
+export default class Background extends Component {
+    _image = ""
+    _color = new Color(255,0,0,1)
+    _position = new Point2D(0,0)
+    _size = new Point2D(256,256)
+    _repeat = "repeat"
+    _blendMode = "normal"
+    _clip = "content-box"
+    _origin = "content-box"
+    _positionAnchorX = "left"
+    _positionAnchorY = "top"
+    _attachment = "local"
 
     constructor(data=undefined) { super(data); if (data != undefined) { this.load(data) } }
 
     load(data) {
         super.load(data)
-        try{ this.image = data.image }                     catch(e) { console.warn("No image property in data") }
-        try{ this.color.r = data.color.r }                 catch(e) { console.warn("Bad color in Background") }
-        try{ this.color.g = data.color.g }                 catch(e) { console.warn("Bad color in Background") }
-        try{ this.color.b = data.color.b }                 catch(e) { console.warn("Bad color in Background") }
-        try{ this.color.a = data.color.a }                 catch(e) { console.warn("Bad color in Background") }
-        try{ this.position.x = data.position.x }           catch(e) { console.warn("Bad Background position") }
-        try{ this.position.y = data.position.y }           catch(e) { console.warn("Bad Background position") }
-        try{ this.size.x = data.size.x }                   catch(e) { console.warn("Bad Background size") }
-        try{ this.size.y = data.size.y }                   catch(e) { console.warn("Bad Background size") }
-        try{ this.repeat = data.repeat }                   catch(e) { console.warn("Bad Background repeat") }
-        try{ this.blendMode = data.blendMode }             catch(e) { console.warn("Bad Background blendMode") }
-        try{ this.clip = data.clip }                       catch(e) { console.warn("Bad Background clip") }
-        try{ this.origin = data.origin }                   catch(e) { console.warn("Bad Background origin") }
-        try{ this.positionAnchorX = data.positionAnchorX } catch(e) { console.warn("Bad Background positionAnchorX") }
-        try{ this.positionAnchorY = data.positionAnchorY } catch(e) { console.warn("Bad Background positionAnchorY") }
-        try{ this.attachment = data.attachment }           catch(e) { console.warn("Bad Background attachment") }
+        try{ this._image = data._image }                     catch(e) { console.warn("No image property in data") }
+        try{ this._color.r = data._color.r }                 catch(e) { console.warn("Bad color in Background") }
+        try{ this._color.g = data._color.g }                 catch(e) { console.warn("Bad color in Background") }
+        try{ this._color.b = data._color.b }                 catch(e) { console.warn("Bad color in Background") }
+        try{ this._color.a = data._color.a }                 catch(e) { console.warn("Bad color in Background") }
+        try{ this._position.x = data._position.x }           catch(e) { console.warn("Bad Background position") }
+        try{ this._position.y = data._position.y }           catch(e) { console.warn("Bad Background position") }
+        try{ this._size.x = data._size.x }                   catch(e) { console.warn("Bad Background size") }
+        try{ this._size.y = data._size.y }                   catch(e) { console.warn("Bad Background size") }
+        try{ this._repeat = data._repeat }                   catch(e) { console.warn("Bad Background repeat") }
+        try{ this._blendMode = data._blendMode }             catch(e) { console.warn("Bad Background blendMode") }
+        try{ this._clip = data._clip }                       catch(e) { console.warn("Bad Background clip") }
+        try{ this._origin = data._origin }                   catch(e) { console.warn("Bad Background origin") }
+        try{ this._positionAnchorX = data._positionAnchorX } catch(e) { console.warn("Bad Background positionAnchorX") }
+        try{ this._positionAnchorY = data._positionAnchorY } catch(e) { console.warn("Bad Background positionAnchorY") }
+        try{ this._attachment = data._attachment }           catch(e) { console.warn("Bad Background attachment") }
     }
+
+    get image() { return this._image }
+    get color() { return this._color }
+    get position() { return this._position }
+    get size() { return this._size }
+    get repeat() { return this._repeat }
+    get blendMode() { return this._blendMode }
+    get clip() { return this._clip }
+    get origin() { return this._origin }
+    get positionAnchorX() { return this._positionAnchorX }
+    get positionAnchorY() { return this._positionAnchorY }
+    get attachment() { return this._attachment }
+
+    #check(val,arr) {
+        let cnt = arr.length
+        for (let ii=0; ii<cnt; ii++){
+            if (arr[ii] == val) { return true }
+        }
+        return false
+    }
+
+    set image(val) {
+        this._image = val
+        this.getSimObject().setDirty()
+    }
+
+    set color(val) {
+        if (typeof val === "Color"){
+            this._color = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background color.")
+        }
+    }
+
+    set position(val) {
+        if (typeof val === "Point2D"){
+            this._position = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background position.")
+        }
+    }
+
+    set size(val) {
+        if (typeof val === "Point2D"){
+            this._size = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background size.")
+        }
+    }
+
+    set repeat(val) {
+        if (this.#check(val,REPEATS)){
+            this._repeat = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background repeat.")
+        }
+    }
+
+    set blendMode(val) {
+        if (this.#check(val,BLENDINGS)){
+            this._blendMode = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background blending mode.")
+        }
+    }
+
+    set clip(val) {
+        if (this.#check(val,CLIPS)){
+            this._clip = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background clip mode.")
+        }
+    }
+
+    set origin(val) {
+        if (this.#check(val,ORIGINS)){
+            this._origin = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background origin.")
+        }
+    }
+
+    set positionAnchorX(val) {
+        this._positionAnchorX = val
+        this.getSimObject().setDirty()
+    }
+
+    set positionAnchorY(val) {
+        this._positionAnchorY = val
+        this.getSimObject().setDirty()
+    }
+
+    set attachment(val) {
+        ATTACHS
+        if (this.#check(val,ATTACHS)){
+            this._attachment = val
+            this.getSimObject().setDirty()
+        } else {
+            DomInterface.warn("Invalid background attachment.")
+        }
+    }
+
 
     getCSS(){ 
         result = ""
