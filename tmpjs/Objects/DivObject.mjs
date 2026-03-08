@@ -1,10 +1,21 @@
-class DivObject extends DomObject{
+import DomInterface from "./DomInterface.mjs"
+import DomObject from "./DomObject.mjs"
 
+export default class DivObject extends DomObject{
+    constructor(data=undefined) { super(data); this.createElement("div") }
     start(){
-        let elt = this.createElement("div")
-        this.getParent().getDomElement().appendChild(elt)
+        console.log("start div")
+        //let elt = 
+        //console.log(elt)
+        //let e = DomInterface.getElement(elt)
+        //console.log(elt,e)
+        //this.getParent().getDomElement().appendChild(elt)
 
         super.start()
+    }
+
+    render(){
+        super.render()
     }
 
     update(){}

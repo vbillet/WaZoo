@@ -52,8 +52,6 @@ export default class DomObject extends SimObject{
                 css = css + comp.getCSS()
         }
         this.clearDirty()
-        //console.log(css)
-        //this.getDomElement().style = css;
         DomInterface.setCSS(this.#elt, css)
         this.postUpdate()
     }
@@ -76,9 +74,16 @@ export default class DomObject extends SimObject{
 
     createElement(tag) { 
         this.#elt = DomInterface.createElement(this.guid, tag, this.getChildCount() != 0)
-        /*console.log(this.getParent())
-        this.getParent().getDomElement().appendChild(elt)*/
-        return elt
+        //console.log(this.getParent())
+        /*this.getParent().getDomElement().appendChild(elt)*/
+        return this.#elt
+    }
+
+    setDomInterface(elt) { 
+        this.#elt = DomInterface.addElement(elt)
+        //console.log(this.getParent())
+        /*this.getParent().getDomElement().appendChild(elt)*/
+        return this.#elt
     }
 
     start() { 
@@ -87,6 +92,7 @@ export default class DomObject extends SimObject{
         for(let ii=0; ii<cnt; ii++) {
             this.getChildByIndex(ii).start()
         }
+        this.setParentDOM()
         this.render()
     }
 
@@ -94,6 +100,15 @@ export default class DomObject extends SimObject{
         //return document.getElementById(this.guid) 
         //console.log(this.#elt)
         return DomInterface.getElement(this.#elt)
+    }
+    getElement(){ return this.#elt}
+
+    setParent(simObj) {
+        super.setParent(simObj)
+        if (this.getParent() instanceof DomObject) {
+            DomInterface.setParent(this.#elt, this.getParent().getElement())
+        }
+        //DomInterface.getElement(this.#elt)        
     }
 
     addComponent(component) {

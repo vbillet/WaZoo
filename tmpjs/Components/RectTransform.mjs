@@ -42,7 +42,7 @@ export default class RectTransform extends Component {
     _verticalAnchor = new Point2D(0,1)
     _horizontalAnchor = new Point2D(0,1)
     _rotation = 0
-    _pivot = new Point2D(0,0)
+    _pivot = new Point2D(0.5,0.5)
     _scale = new Point2D(1,1)
 
     constructor(data=undefined) { 

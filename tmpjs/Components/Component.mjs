@@ -26,6 +26,7 @@ import SimObject from "../Objects/SimObject.mjs"
 export default class Component {
     componentClass = ''
     #parentSimObject = undefined
+    #isDirty = true
 
     constructor(data=undefined) {
         this.componentClass = this.constructor.name
@@ -45,7 +46,22 @@ export default class Component {
 
     getSimObject(){ return this.#parentSimObject }
 
+    isDirty() { return this.#isDirty }
+    setDirty() { 
+        this.#isDirty = true 
+        if (this.#parentSimObject != undefined) {
+            this.#parentSimObject.setDirty()
+        }
+    }
+    clearDirty() { 
+        this.#isDirty = true 
+        if (this.#parentSimObject != undefined) {
+            this.#parentSimObject.clearDirty()
+        }
+    }
     toString(){ return JSON.stringify(this) }
+
+
 }
 
 console.log("Componenent class Loaded")

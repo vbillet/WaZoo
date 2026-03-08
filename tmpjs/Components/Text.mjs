@@ -24,7 +24,7 @@ SOFTWARE.
 import Component from "./Component.mjs"
 import { Color } from "../Objects/types.mjs"
 
-class Text extends Component {
+export default class Text extends Component {
     _fontFile = ""
     _fontFamily = "Arial"
     _fontSize = 14

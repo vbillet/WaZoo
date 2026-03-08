@@ -115,12 +115,12 @@ export default class Border extends Component {
         this.leftColor = color
         this.rightColor = color
         this.bottomColor = color
-        this.getSimObject().setDirty()
+        this.setDirty()
     }
 
     setWidth(width) {
         this.width = new Rect(width,width,width,width)
-        this.getSimObject().setDirty()
+        this.setDirty()
     }
 
     setStyle(style) {
@@ -132,28 +132,35 @@ export default class Border extends Component {
         this.leftStyle = style
         this.rightStyle = style
         this.bottomStyle = style
-        this.getSimObject().setDirty()
+        this.setDirty()
     }
 
     get width() { return this._width }
+
     get topStyle() { return this._topStyle }
     get leftStyle() { return this._leftStyle }
     get rightStyle() { return this._rightStyle }
     get bottomStyle() { return this._bottomStyle }
+
+    get color() { return this._topColor}
     get topColor() { return this._topColor }
     get leftColor() { return this._leftColor }
     get rightColor() { return this._rightColor }
     get bottomColor() { return this._bottomColor }
+
     get topLeftRadius() { return this._topLeftRadius }
     get topRightRadius() { return this._topRightRadius }
     get bottomLeftRadius() { return this._bottomLeftRadius }
     get bottomRightRadius() { return this._bottomRightRadius }
 
     set width(val) { this._width = val }
+    
     set topStyle(val) { this._topStyle = val }
     set leftStyle(val) { this._leftStyle = val }
     set rightStyle(val) { this._rightStyle = val }
     set bottomStyle(val) { this._bottomStyle = val }
+
+    set color(val) { this.setColor(val) }
     set topColor(val) { this._topColor = val }
     set leftColor(val) { this._leftColor = val }
     set rightColor(val) { this._rightColor = val }

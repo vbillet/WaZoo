@@ -1,4 +1,6 @@
-class APIManager extends SimObject {
+import SimObject from "./SimObject.mjs"
+
+export default class APIManager extends SimObject {
     baseURL = 'http://localhost:21060'
     #http = undefined
 

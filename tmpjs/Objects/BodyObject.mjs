@@ -21,9 +21,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+import DomInterface from "./DomInterface.mjs"
 import DomObject from "./DomObject.mjs"
 
-class BodyObject extends DomObject{
+export default class BodyObject extends DomObject{
+    constructor(data=undefined) { 
+        super(data); 
+        this.setDomInterface(document.body)
+    }
     render(){
         this.update()
         
@@ -41,7 +46,6 @@ class BodyObject extends DomObject{
     }
 
     start() { 
-        this._addToDomInterface(document.body)
         super.start()
     }
 }

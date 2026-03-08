@@ -7,7 +7,13 @@
     <style>
         * { padding: 0; margin:0; position: fixed; background-color: black;}
     </style>
-    <script type="module" src="index.js"></script>
+    <!--<script type="module" src="index.js"></script>-->
 </head>
 <body></body>
+    <script type = "module">
+        import Application from "/tmpjs/Objects/Application.mjs"
+        var app = new Application()
+        app.start()
+        //console.log(app)
+    </script>
 </html>

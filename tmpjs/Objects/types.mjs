@@ -1,3 +1,5 @@
+function between(v,min,max) { return(v>=min) && (v<=max) }
+
 export class Color{
     constructor(pr = 0, pg = 0, pb = 0,pa = 1){
         if (!(between(pr,0,255))) { throw "Invalid Red Componennt, must be between 0 and 255." }

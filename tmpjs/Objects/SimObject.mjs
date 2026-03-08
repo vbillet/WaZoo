@@ -160,6 +160,8 @@ export default class SimObject {
         return this.children.length
     }
 
+    isDirty() { return this.#dirty }
+
     toString(){ return JSON.stringify(this) }
 
     //******************************************************************************************
@@ -211,6 +213,10 @@ export default class SimObject {
         this.#parent = simObj
         simObj.children.push(this)
     }
+    
+    setDirty() { this.#dirty = true }
+
+    clearDirty() { this.#dirty = false }
 }
 
 console.log("SimObject Class Loaded")
